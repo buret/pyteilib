@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<teiCorpus>
+    <TEI id="*id*">
+        <teiHeader>
+            <fileDesc>
+                <titleStmt>
+                    <title>*title*</title>
+                    <subtitle>*subtitle*</subtitle>
+                    <author>
+                        <name>
+                            <forename>*author-firstname1*</forename>
+                            <surname>*author-lastname1*</surname>
+                        </name>
+                    </author>
+                    <author>
+                        <name>
+                            <forename>*author-firstname2*</forename>
+                            <surname>*author-lastname2*</surname>
+                        </name>
+                    </author>
+                    <author>
+                        <name>
+                            <forename>*author-firstname3*</forename>
+                            <surname>*author-lastname3*</surname>
+                        </name>
+                    </author>
+                    <respStmt>
+                        <resp>translator</resp>
+                        <name>
+                            <forename>*translator-firstname1*</forename>
+                            <surname>*translator-lastname1*</surname>
+                        </name>
+                    </respStmt>
+                    <respStmt>
+                        <resp>translator</resp>
+                        <name>
+                            <forename>*translator-firstname2*</forename>
+                            <surname>*translator-lastname2*</surname>
+                        </name>
+                    </respStmt>
+                    <respStmt>
+                        <resp>translator</resp>
+                        <name>
+                            <forename>*translator-firstname3*</forename>
+                            <surname>*translator-lastname3*</surname>
+                        </name>
+                    </respStmt>
+                    <respStmt>
+                        <resp>transcriber</resp>
+                        <name>
+                            <forename>*transcriber-firstname1*</forename>
+                            <surname>*transcriber-lastname1*</surname>
+                        </name>
+                    </respStmt>
+                    <collectionStmt>
+                        <collection>*collection*</collection>
+                        <respStmt>
+                            <resp>resp_collection</resp>
+                            <name>
+                                <forename>*resp_collection-firstname1*</forename>
+                                <surname>*resp_collection-lastname1*</surname>
+                            </name>
+                        </respStmt>
+                        <respStmt>
+                            <resp>resp_collection</resp>
+                            <name>
+                                <forename>*resp_collection-firstname2*</forename>
+                                <surname>*resp_collection-lastname2*</surname>
+                            </name>
+                        </respStmt>
+                        <respStmt>
+                            <resp>resp_collection</resp>
+                            <name>
+                                <forename>*resp_collection-firstname3*</forename>
+                                <surname>*resp_collection-lastname3*</surname>
+                            </name>
+                        </respStmt>
+                    </collectionStmt>
+                </titleStmt>
+                <editionStmt>
+                    <edition>*edition*</edition>
+                </editionStmt>
+                <extent>
+                    <measure unit="words" quantity="*words*"/>
+                </extent>
+                <publicationStmt>
+                    <publisher>*publisher*</publisher>
+                    <pubPlace>*pubPlace*</pubPlace>
+                    <date>*date*</date>
+                    <availability>
+                        <licence>*licence*</licence>
+                    </availability>
+                </publicationStmt>
+                <notesStmt>
+                    <note>*note*</note>
+                </notesStmt>
+                <sourceDesc>
+                    <p>*sourceDesc*</p>
+                </sourceDesc>
+            </fileDesc>
+            <encodingDesc>
+                <projectDesc>
+                    <p>*projectDesc*</p>
+                </projectDesc>
+            </encodingDesc>
+            <profileDesc>
+                <langUsage>
+                    <language ident="*language*" langOri="*language_ori*"/>
+                </langUsage>
+                <category type="dialecte">
+                    <catDesc>*dialecte*</catDesc>
+                </category>
+                <creation>
+                    <date>*creationDate*</date>
+                </creation>
+                <textDesc>
+				    <derivation type="*derivation*"/>
+				    <domain type="*domain1*"/>
+				    <domain type="*domain2*"/>
+				    <domain type="*domain3*"/>
+				    <genre type="*genre1*"/>
+				    <genre type="*genre2*"/>
+				    <genre type="*genre3*"/>
+				    <textForm type="*textForm*"/>
+                </textDesc>
+            </profileDesc>
+        </teiHeader>
+        <text>
+            <body></body>
+        </text>
+    </TEI>
+</teiCorpus>

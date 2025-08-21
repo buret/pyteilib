@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<teiCorpus>
+    <TEI id="example.1"><!-- Texte original en occitan languedocien -->
+        <teiHeader>
+            <fileDesc>
+                <titleStmt>
+                    <title>La grava sul camin</title>
+                    <subtitle/>
+                    <author>
+                        <name>
+                            <forename>Joan</forename>
+                            <surname>Bodon</surname>
+                        </name>
+                        <birth>1920</birth>
+                        <death>1975</death>
+                        <placeName/>
+                    </author>
+                    <collectionStmt>
+                        <collection>BaTelÒc</collection>
+                        <respStmt>
+                            <resp>resp_collection</resp>
+                            <name>
+                                <forename>Myriam</forename>
+                                <surname>Bras</surname>
+                            </name>
+                        </respStmt>
+                    </collectionStmt>
+                    <respStmt>
+                        <resp>publisher_provider</resp>
+                        <name>Robèrt Martí, IDECO</name>
+                        <date/>
+                    </respStmt>
+                    <respStmt>
+                        <resp>project_provider</resp>
+                        <name>Joan Thomàs</name>
+                    </respStmt>
+                    <respStmt>
+                        <resp>teihdr_creator</resp>
+                        <name>Myriam Bras</name>
+                        <date/>
+                    </respStmt>
+                    <respStmt>
+                        <resp>teibdy_creator</resp>
+                        <name>Carme Armentano i Oller</name>
+                        <date/>
+                    </respStmt>
+                </titleStmt>
+                <editionStmt>
+                    <edition/>
+                </editionStmt>
+                <extent>
+                    <measure unit="words" quantity="3000"/>
+                </extent>
+                <publicationStmt>
+                    <publisher>Institut d'Estudis Occitans</publisher>
+                    <pubPlace>Puylaurens</pubPlace>
+                    <date>2003</date>
+                    <idno type="ISBN">2-85910-340-6</idno>
+                    <availability>
+                        <licence>à utiliser dans un cadre de recherche ou d'enseignement après accord du dépositaire des droits</licence>
+                    </availability>
+                </publicationStmt>
+                <notesStmt>
+                    <note/>
+                </notesStmt>
+                <sourceDesc>
+                    <p>Imported from BaTelÒc</p>
+                </sourceDesc>
+            </fileDesc>
+            <encodingDesc>
+                <projectDesc>
+                    <p>BaTelÒc : Basa de Tèxtes en Lenga Occitana
+                    Encodatge de tèxtes occitans segon la nòrma de la Text Encoding Initiative, TEIP5
+                    http://www.tei-c.org/release/doc/tei-p5-doc</p>
+                </projectDesc>
+            </encodingDesc>
+            <profileDesc>
+                <langUsage>
+                    <language ident="oc" variant="Lengadocian" script="Classica" langOri="oc" variantOri="Lengadocian" scriptOri="Classica"/>
+                </langUsage>
+                <creation>
+                    <date>1956</date>
+                </creation>
+                <textDesc>
+				    <derivation type="original"/>
+				    <domain type="literature"/>
+				    <domain type=""/>
+				    <domain type=""/>
+				    <genre type="roman"/>
+				    <genre type=""/>
+				    <genre type=""/>
+				    <textForm type=""/>
+                </textDesc>
+                <textClass>
+                    <keywords>
+                        <term>descobèrta</term>
+                        <term>roergue</term>
+                    </keywords>
+                </textClass>
+            </profileDesc>
+            <revisionDesc>
+                <listChange>
+                    <change when="2012-05-21" who="Myriam Bras">File creation</change>
+                </listChange>
+            </revisionDesc>
+        </teiHeader>
+        <text>
+            <body/>
+        </text>
+    </TEI>
+    <TEI id="example.2"><!-- Traduction en français d'un texte original en serbe -->
+        <teiHeader>
+            <fileDesc>
+                <titleStmt>
+                    <title>Le concert</title>
+                    <subtitle/>
+                    <author>
+                        <name>
+                            <forename>Muharem</forename>
+                            <surname>Bazdulj</surname>
+                        </name>
+                        <birth/>
+                        <death/>
+                        <placeName/>
+                    </author>
+                    <respStmt>
+                        <resp>translator</resp>
+                        <name>
+                            <forename>Živko</forename>
+                            <surname>Vlahović</surname>
+                        </name>
+                    </respStmt>
+                    <respStmt>
+                        <resp>transcriber</resp>
+                        <name>
+                            <forename>Kaja</forename>
+                            <surname>Đorđević</surname>
+                        </name>
+                    </respStmt>
+                    <collectionStmt>
+                        <collection/>
+                        <respStmt/>
+                    </collectionStmt>
+                    <respStmt>
+                        <resp>publisher_provider</resp>
+                        <name/>
+                        <date/>
+                    </respStmt>
+                    <respStmt>
+                        <resp>project_provider</resp>
+                        <name/>
+                    </respStmt>
+                    <respStmt>
+                        <resp>teihdr_creator</resp>
+                        <name/>
+                        <date/>
+                    </respStmt>
+                    <respStmt>
+                        <resp>teibdy_creator</resp>
+                        <name/>
+	                    <date/>
+                    </respStmt>
+                </titleStmt>
+                <editionStmt>
+                    <edition/>
+                </editionStmt>
+                <extent>
+                    <measure unit="words" quantity="27004"/>
+                </extent>
+                <publicationStmt>
+                    <publisher>Tropismes éditions</publisher>
+                    <pubPlace>Trôo</pubPlace>
+                    <date>2024</date>
+                    <idno type="ISBN"/>
+                    <availability>
+                        <licence>All rights reserved Tropismes éditions</licence>
+                    </availability>
+                </publicationStmt>
+                <notesStmt>
+                    <note/>
+                </notesStmt>
+                <sourceDesc>
+                    <p>Scanned and converted from PDF</p>
+                </sourceDesc>
+            </fileDesc>
+            <encodingDesc>
+                <projectDesc>
+                    <p>Parallel Corpus
+                    <ref target="http://parcolab.univ-tlse2.fr/">ParCoLab</ref>
+                    </p>
+                </projectDesc>
+            </encodingDesc>
+            <profileDesc>
+                <langUsage>
+                    <language ident="fr" variant="" script="" langOri="sr" variantOri="" scriptOri=""/>
+                </langUsage>
+                <creation>
+                    <date>2024</date>
+                </creation>
+                <textDesc>
+				    <derivation type="translation"/>
+				    <domain type="literature"/>
+				    <domain type=""/>
+				    <domain type=""/>
+				    <genre type="novel"/>
+				    <genre type=""/>
+				    <genre type=""/>
+				    <textForm type="prose"/>
+                </textDesc>
+                <textClass>
+                    <keywords>
+                        <term/>
+                    </keywords>
+                </textClass>
+            </profileDesc>
+            <revisionDesc>
+                <listChange>
+                    <change when="" who="">File creation</change>
+                </listChange>
+            </revisionDesc>
+        </teiHeader>
+        <text>
+            <body></body>
+        </text>
+    </TEI>
+</teiCorpus>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<teiCorpus xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader><!-- corpus-level metadata here --></teiHeader>
+    <TEI xmlns="http://www.tei-c.org/ns/1.0" id="*id*">
+        <teiHeader xml:lang="en"><!-- metadata specific to this text here -->
+            <fileDesc><!-- (file description) contains a full bibliographic description of an electronic file. -->
+                <titleStmt>
+                    <title><!-- title of the resource -->*title*</title>
+                    <subtitle>*subtitle*</subtitle>
+                    <author>
+                        <name>
+                            <forename>*author-firstname1*</forename>
+                            <surname>*author-lastname1*</surname>
+                        </name>
+                        <birth>*author-birth1*</birth>
+                        <death>*author-death1*</death>
+                        <placeName>*author-place1*</placeName>
+                    </author>
+                    <author>
+                        <name>
+                            <forename>*author-firstname2*</forename>
+                            <surname>*author-lastname2*</surname>
+                        </name>
+                        <birth>*author-birth2*</birth>
+                        <death>*author-death2*</death>
+                        <placeName>*author-place2*</placeName>
+                    </author>
+                    <author>
+                        <name>
+                            <forename>*author-firstname3*</forename>
+                            <surname>*author-lastname3*</surname>
+                        </name>
+                        <birth>*author-birth3*</birth>
+                        <death>*author-death3*</death>
+                        <placeName>*author-place3*</placeName>
+                    </author>
+                    <respStmt>
+                        <resp>translator</resp>
+                        <name>
+                            <forename>*translator-firstname1*</forename>
+                            <surname>*translator-lastname1*</surname>
+                        </name>
+                        <birth>*translator-birth1*</birth>
+                        <death>*translator-death1*</death>
+                    </respStmt>
+                    <respStmt>
+                        <resp>translator</resp>
+                        <name>
+                            <forename>*translator-firstname2*</forename>
+                            <surname>*translator-lastname2*</surname>
+                        </name>
+                        <birth>*translator-birth2*</birth>
+                        <death>*translator-death2*</death>
+                    </respStmt>
+                    <respStmt>
+                        <resp>translator</resp>
+                        <name>
+                            <forename>*translator-firstname3*</forename>
+                            <surname>*translator-lastname3*</surname>
+                        </name>
+                        <birth>*translator-birth3*</birth>
+                        <death>*translator-death3*</death>
+                    </respStmt>
+                    <respStmt>
+                        <resp>transcriber</resp>
+                        <name>
+                            <forename>*transcriber-firstname1*</forename>
+                            <surname>*transcriber-lastname1*</surname>
+                        </name>
+                    </respStmt>
+                    <respStmt>
+                        <resp>publisher_provider</resp><!-- balhaire fichièr sorga -->
+                        <name>*publisher_provider-name*</name>
+                        <date>*publisher_provider-date*</date>
+                    </respStmt>
+                    <respStmt>
+                        <resp>project_provider</resp><!-- portaire fichièr sorga -->
+                        <name>*project_provider-name*</name>
+                    </respStmt>
+                    <respStmt>
+                        <resp>teihdr_creator</resp><!-- donadas pel header -->
+                        <name>*teihdr_creator-name*</name>
+                        <date>*teihdr_creator-date*</date>
+                    </respStmt>
+                    <respStmt>
+                        <resp>teibdy_creator</resp><!-- pretactament e balitsatge del tèxte segon la TEI P5 -->
+                        <name>*teibdy_creator-name*</name>
+	                    <date>*teibdy_creator-date*</date>
+                    </respStmt>
+                    <collectionStmt>
+                        <collection>*collection*</collection>
+                        <respStmt>
+                            <resp>resp_collection</resp>
+                            <name>
+                                <forename>*resp_collection-firstname1*</forename>
+                                <surname>*resp_collection-lastname1*</surname>
+                            </name>
+                        </respStmt>
+                        <respStmt>
+                            <resp>resp_collection</resp>
+                            <name>
+                                <forename>*resp_collection-firstname2*</forename>
+                                <surname>*resp_collection-lastname2*</surname>
+                            </name>
+                        </respStmt>
+                        <respStmt>
+                            <resp>resp_collection</resp>
+                            <name>
+                                <forename>*resp_collection-firstname3*</forename>
+                                <surname>*resp_collection-lastname3*</surname>
+                            </name>
+                        </respStmt>
+                    </collectionStmt>
+                </titleStmt>
+                <editionStmt>
+                    <p><!-- information about the edition of the resource  --></p>
+                    <edition>*edition*</edition>
+                </editionStmt>
+                <extent><!-- description of the size of the resource -->
+                    <measure unit="words" quantity="*words*"/>
+                </extent>
+                <publicationStmt>
+                    <p><!-- Information about the distribution of the resource --></p>
+                    <publisher>*publisher*</publisher>
+                    <pubPlace>*pubPlace*</pubPlace>
+                    <date>*date*</date>
+                    <idno type="ISBN">*isbn*</idno>
+                    <availability>
+                        <licence>*licence*</licence>
+                    </availability>
+                </publicationStmt>
+                <notesStmt>
+                    <note><!-- notes on other aspects of the resource -->*note*</note>
+                </notesStmt>
+                <sourceDesc>
+                    <p><!-- Information about the source from which the resource was derived -->*sourceDesc*</p>
+                </sourceDesc>
+            </fileDesc>
+            <encodingDesc><!-- (encoding description) documents the relationship between an electronic text and the source or sources from which it was derived. -->
+                <projectDesc>
+                    <p>*projectDesc*</p>
+                </projectDesc>
+            </encodingDesc>
+            <profileDesc><!-- (text-profile description) provides a detailed description of non-bibliographic aspects of a text, specifically the languages and sublanguages used, the situation in which it was produced, the participants and their setting. -->
+                <langUsage><!-- (language usage) describes the languages, sublanguages, registers, dialects, etc. represented within a text. -->
+                    <language ident="*language*" variant="*dialect*" script="*script*" langOri="*language_ori*" variantOri="*dialect_ori*" scriptOri="*script_ori*"/><!-- (language) characterizes a single language or sublanguage used within a text. -->
+                </langUsage>
+                <creation>
+                    <date>*creationDate*</date>
+                </creation>
+                <textDesc>
+				    <derivation type="*derivation*"/>
+				    <domain type="*domain1*"/>
+				    <domain type="*domain2*"/>
+				    <domain type="*domain3*"/>
+				    <genre type="*genre1*"/>
+				    <genre type="*genre2*"/>
+				    <genre type="*genre3*"/>
+				    <textForm type="*textForm*"/>
+                </textDesc>
+                <textClass><!-- (text classification) groups information which describes the nature or topic of a text in terms of a standard classification scheme, thesaurus, etc. -->
+                    <keywords><!-- (keywords) contains a list of keywords or phrases identifying the topic or nature of a text. -->
+                        <term>*corpus.1*</term><!-- (term) contains a single-word, multi-word, or symbolic designation which is regarded as a technical term. -->
+                        <term>*corpus.2*</term>
+                        <term>*corpus.3*</term>
+                    </keywords>
+                </textClass>
+            </profileDesc>
+            <revisionDesc><!-- (revision description) summarizes the revision history for a file. -->
+                <listChange>
+                    <change who="*contributor-name1*" when="*contributor-date1*">File creation</change>
+                </listChange>
+            </revisionDesc>
+        </teiHeader>
+        <text>
+            <body></body>
+        </text>
+    </TEI>
+</teiCorpus>

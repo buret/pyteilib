@@ -1,0 +1,13 @@
+include *.txt *.rst
+include test/startup.py
+include LICENSE
+include doc/Doxygen/*
+include doc/Doxygen/html/*
+recursive-include test *.*
+recursive-include pyteilib *.csv *.pl *.xsl *.xml
+
+# recursive-exclude
+# exclude
+# global-include
+# global-exclude
+# graft

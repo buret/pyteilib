@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<TEI>
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Title</title>
+                <author>Author Qualqu'un</author>
+                <editor>CLLE-ERSS TELOC</editor>
+                <principal>Firstname Lastname</principal>
+                <respstmt>
+                    <resp>balhaire fichièr sorga</resp>
+                    <name>Firstname Lastname, organisation</name>
+                </respstmt>
+                <respstmt>
+                    <resp>portaire fichièr sorga</resp>
+                    <name>Firstame Lastname</name>
+                </respstmt>
+                <respstmt>
+                    <resp>pretractament e balisatge del tèxte segon la TEI P5</resp>
+                    <name>Firstame Lastname (body)</name>
+                </respstmt>
+                <respstmt>
+                    <resp>donadas pel header</resp>
+                    <name>Firstame Lastname (header)</name>
+                </respstmt>
+                <respstmt>
+                    <resp>-</resp>
+                    <name>-</name>
+                </respstmt>
+            </titleStmt>
+            <editionStmt>
+                <edition>
+                    <date>01/01/2001</date>
+                </edition>
+            </editionStmt>
+            <extent>0 Ko</extent>
+            <publicationStmt>
+                <distributor>
+                    <name>CLLE-ERSS</name>
+                    <address>
+                        <lg>Maison de la recherche
+                            5 allées Antonio Machado
+                            F 31058 TOULOUSE CEDEX</lg>
+                    </address>
+                </distributor>
+                <availability status='restricted'>
+                    <p>à utiliser dans un cadre de recherche ou d'enseignement après accord du dépositaire des droits</p>
+                </availability>
+            </publicationStmt>
+            <sourceDesc>
+                <biblStruct xml:lang='FR'>
+                    <monogr>
+                        <author id='traducteur'>
+                            <surname>Lastname</surname>
+                            <forename>Firstname</forename>
+                            <datebirth>DOB</datebirth>
+                            <datedead>DOD</datedead>
+                        </author>
+                        <author id='auteurOriginal'>
+                            <surname>Lastname</surname>
+                            <forename>Firstname</forename>
+                            <datebirth>DOB</datebirth>
+                            <datedead>-</datedead>
+                        </author>
+                        <title>Main title</title>
+                        <title type='parallel'>Parallel title</title>
+                        <imprint>
+                            <date>Date</date>
+                            <publisher>Publisher</publisher>
+                            <seriesStmt>Series</seriesStmt>
+                            <pubplace>Place</pubplace>
+                            <idno type='ISBN'>0-12345-678-9</idno>
+                            <idno type='numero edition'></idno>
+                        </imprint>
+                    </monogr>
+                </biblStruct>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <projetDesc>
+                <p>BaTelÒc : Basa de Tèxtes en Lenga Occitana</p>
+                <p>Encodatge de tèxtes occitans segon la nòrma de la Text Encoding Initiative, TEIP5</p>
+                <p>http://www.tei-c.org/release/doc/tei-p5-doc</p>
+            </projetDesc>
+            <classDecl>
+                <taxonomy>
+                    <bibl>Frantext</bibl>
+                    <category type='dialecte'>
+                        <catDesc>lengadocian</catDesc>
+                    </category>
+                    <category type='graphie'>
+                        <catDesc>classica</catDesc>
+                    </category>
+                    <category type='genre'>
+                        <catDesc type='principal'>ensag</catDesc>
+                        <catDesc type='sub'></catDesc>
+                    </category>
+                    <category type='corpus'>
+                        <catDesc>descobèrta</catDesc>
+                        <catDesc>roergue</catDesc>
+                    </category>
+                </taxonomy>
+            </classDecl>
+        </encodingDesc>
+        <profileDesc>
+            <creation>
+                <date>2003</date>
+            </creation>
+            <langUsage>
+                <language ident='oc'>occitan</language>
+            </langUsage>
+        </profileDesc>
+        <revisionDesc>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <front>
+            <doctitle>
+                <bibl><docAuthor>Firstname Lastname</docAuthor></bibl>
+                <titlePart type="principal"> TITLE </titlePart>
+                <dedicace>
+                    Per Firstname
+                </dedicace>
+                <epigraph>
+                    <quote xml:lang="en">This is a quote.</quote>
+                    <cit>Citation epigraph.</cit>
+                    <bibl>Firstname LASTNAME.</bibl>
+                </epigraph>
+            </doctitle>
+            <titlePage>
+                <epigraph>
+                    <cit>
+                        <quote>Citation épigraphe 1.</quote>
+                    </cit>
+                    <note>Note épigraphe 1.</note>
+                </epigraph>
+            </titlePage>
+            <div type="preface">
+                <p>Ceci est une préface.</p>
+                <p>Avec plusieurs paragraphes.</p>
+            </div>
+            <div type="ack">Remerciements.</div>
+            <div type="dedication">Dédicace.</div>
+            <prologue>
+                Ceci est un prologue.
+                <p>Avec un premier parapgraphe.</p>
+                <p>Et un second paragraphe.</p>
+            </prologue>
+        </front>
+        <body>
+            <div>
+                <epigraph>
+                    <cit>
+                        <quote>Citation épigraphe 2.</quote>
+                        <bibl>
+                            <title>Titre épigraphe 2.</title>
+                            <author>Auteur épigraphe 2.</author>
+                        </bibl>
+                    </cit>
+                </epigraph>
+            </div>
+            <div type="sous-partie1">
+                <p>Aquò es un exemple.</p>
+                <p>Amb qualquas frasas.</p>
+                <p>E de partidas <hi rend="I">en italicas</hi>. De questions? O encara: d'exclamacions! Plan.</p>
+                <p>De verguetas : "100% des tests doivent passer". Totjorn. "Alara ?"</p>
+                <p>Ça, c'est une phrase qui commence par un caractère spécial. Ô oui! Ò aquesta tanben.</p>
+            </div>
+            <div type="sous-partie1">
+                <head>Titre de la sous-partie 1</head>
+                <p>Maintenant testons les abbréviations comme F.T.P ou F.F.I. par exemple. Ou St. (St ?) Mr. et Ste Mme.</p>
+                <p>Ainsi que les différentes ponctuations,  comme ; et encore : ainsi de suite... Voilà.</p>
+                <p>Nous devons aussi tester les dialogues. Quelqu'un dit : - Que fait-on ? Doit-on continuer ?</p>
+                <p>- Je ne sais pas... Qu'en penses-tu ?</p>
+            </div>
+            <div type="chapitre">
+                <head rend="I">POSTFACI</head>
+                <p>C'est la fin. On termine avec une signature.</p>
+                <signed><place>Aquí</place>, <date>uèi</date>
+                    <name> - F. L.</name></signed>
+            </div>
+            <div1 type="chapter">
+                <head>Titre du chapitre 1</head>
+                <p>Contenu de chapitre 1.</p>
+                <div2>
+                    <head>Titre de la sous-partie du chapitre 1</head>
+                    <p>Sous-partie du chapitre 1.</p>
+                    <div3>
+                        <p>Encore une sous-partie.</p>
+                    </div3>
+                </div2>
+            </div1>
+            <div>
+                <head>Dernier chapitre</head>
+                <p>Contenu du dernier chapitre.</p>
+            </div>
+        </body>
+        <back>
+            <epilogue>
+                <div2 type="chapter">
+                    <head><hi rend="G">Epilòg</hi></head>
+                </div2>
+                <div2 type="chapter"><head rend="M">TITOL</head>
+                    <q rend="endquo">
+                        <p>"Aquì lo tèxte.</p>
+                        <p>- Va plan !"</p>
+                    </q>
+                    <p>E <hi rend="I">aquì</hi> tanben.</p>
+                    <p><foreign xml:lang="fr">"Ici un texte en <hi rend="I">français</hi>".</foreign></p>
+                    <note n="1" place="foot">Note à ne pas conserver.</note>
+                    <lg rend="I" type="poeme-chant">
+                        <head/>
+                        <l>Primièra frasa</l>
+                        <l><foreign xml:lang="fr"><hi rend="I">Allez !</hi></foreign></l>
+                    </lg>
+                </div2>
+            </epilogue>
+            <div1 type="subpart">
+                <note>
+                    <div2 type="chapter">
+                        <head><foreign xml:lang="fr"><hi rend="G">NOTES DE L'AUTEUR</hi></foreign></head>
+                    </div2>
+                    <div2 type="chapter">
+                        <head rend="M"><head rend="G">TITRE</head></head>
+                        <foreign xml:lang="fr">
+                            <p>Ici des notes en <hi rend="I">français</hi></p>
+                            <list>
+                                <item>- Item 1.</item>
+                                <item>- Item 2.</item>
+                            </list>
+                        </foreign>
+                    </div2>
+                </note>
+            </div1>
+        </back>
+    </text>
+</TEI>

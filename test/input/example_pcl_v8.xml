@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teiCorpus>
+    <TEI>
+      <teiHeader>
+        <fileDesc>
+          <titleStmt>
+            <title>Title</title>
+            <subtitle>Subtitle</subtitle>
+            <author>
+              <name>
+                <forename>Firstname</forename>
+                <surname>Lastname</surname>
+              </name>
+            </author>
+            <author>
+              <name>
+                <forename>Firstname2</forename>
+                <surname>Lastname2</surname>
+              </name>
+            </author>
+            <respStmt>
+              <resp>translator</resp>
+              <name>
+                <forename>Firstname</forename>
+                <surname>Lastname</surname>
+              </name>
+            </respStmt>
+            <respStmt>
+              <resp>translator2</resp>
+              <name>
+                <forename>Firstname2</forename>
+                <surname>Lastname2</surname>
+              </name>
+            </respStmt>
+            <respStmt>
+              <resp>transcriber</resp>
+              <name>
+                <forename/>
+                <surname/>
+              </name>
+            </respStmt>
+            <collectionStmt>
+              <collection>BaTelÒc</collection>
+              <respStmt>
+                <resp>resp_collection</resp>
+                <name>
+                  <forename>Firstname</forename>
+                  <surname>Lastname</surname>
+                </name>
+              </respStmt>
+              <respStmt>
+                <resp>resp_collection</resp>
+                <name>
+                  <forename>LL-OCRE</forename>
+                  <surname>CLLE</surname>
+                </name>
+              </respStmt>
+            </collectionStmt>
+          </titleStmt>
+          <editionStmt>
+            <edition>Series 123</edition>
+          </editionStmt>
+          <extent>
+            <measure unit="words" quantity="0"/>
+          </extent>
+          <publicationStmt>
+            <publisher>Publisher</publisher>
+            <pubPlace>Place</pubPlace>
+            <date>Date</date>
+            <availability>
+              <licence>restricted<p>à utiliser dans un cadre de recherche ou d'enseignement après accord du dépositaire des droits</p></licence>
+            </availability>
+          </publicationStmt>
+          <notesStmt>
+            <note/>
+          </notesStmt>
+          <sourceDesc>
+            <p>Imported from BaTelÒc</p>
+          </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+          <projectDesc>
+            <p>BaTelÒc : Basa de Tèxtes en Lenga Occitana</p>
+            <p>Encodatge de tèxtes occitans segon la nòrma de la Text Encoding Initiative, TEIP5</p>
+            <p>http://www.tei-c.org/release/doc/tei-p5-doc</p>
+          </projectDesc>
+        </encodingDesc>
+        <profileDesc>
+          <langUsage>
+            <language ident="oc" langOri="oc"/>
+          </langUsage>
+            <category type="dialecte">
+                <catDesc>Lengadocian</catDesc>
+            </category>
+          <creation>
+            <date>2003</date>
+          </creation>
+          <textDesc>
+            <derivation type="original"/>
+            <domain type="literature"/>
+            <genre type="essay"/>
+            <textForm type="prose"/>
+          </textDesc>
+        </profileDesc>
+      </teiHeader>
+      <text>
+        <body>
+          <div>
+            <p>
+              <s>This is a quote.</s>
+            </p>
+            <p>
+              <s>Firstname LASTNAME.</s>
+            </p>
+          </div>
+          <div>
+            <p>
+              <s>Aquò es un exemple.</s>
+            </p>
+            <p>
+              <s>Amb qualquas frasas.</s>
+            </p>
+            <p>
+              <s>E de partidas en italicas.</s>
+              <s>De questions?</s>
+              <s>O encara: d'exclamacions!</s>
+              <s>Plan.</s>
+            </p>
+            <p>
+              <s>De verguetas : "100% des tests doivent passer".</s>
+              <s>Totjorn.</s>
+              <s>"Alara ?"</s>
+            </p>
+            <p>
+              <s>Ça, c'est une phrase qui commence par un caractère spécial.</s>
+              <s>Ô oui!</s>
+              <s>Ò aquesta tanben.</s>
+            </p>
+          </div>
+          <div>
+            <p>
+              <s>Maintenant testons les abbréviations comme F.T.P ou F.F.I. par exemple.</s>
+              <s>Ou St. (St ?) Mr. et Ste Mme.</s>
+            </p>
+            <p>
+              <s>Ainsi que les différentes ponctuations,  comme ; et encore : ainsi de suite...</s>
+              <s>Voilà.</s>
+            </p>
+            <p>
+              <s>Nous devons aussi tester les dialogues.</s>
+              <s>Quelqu'un dit : - Que fait-on ?</s>
+              <s>Doit-on continuer ?</s>
+            </p>
+            <p>
+              <s>- Je ne sais pas...</s>
+              <s>Qu'en penses-tu ?</s>
+            </p>
+          </div>
+          <div>
+            <p>
+              <s>C'est la fin.</s>
+              <s>On termine avec une signature.</s>
+            </p>
+          </div>
+        </body>
+      </text>
+    </TEI>
+</teiCorpus>
