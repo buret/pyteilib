@@ -57,6 +57,7 @@ def xml_tei_read(filename, xml_type='TEI', keep_highlighted=False):
     @param keep_highlighted Boolean to keep the <hi> tags or not.
     @return A TEI instance.
     """
+    print("Read " + xml_type + " from XML file " + filename)
     root = parse_xml(filename)
     # Create an object instance corresponding to the XML root element
     if root.tag == 'TEI':
@@ -102,9 +103,9 @@ def get_sub_elements(instance, element, xml_type='TEI', keep_highlighted=False):
             elif sub_element.tag == "head" and element.tag.startswith("div"):
                 if keep_highlighted:
                     # Do not keep 'foreign' tags
-                    instance.head = tostring(sub_element, encoding='unicode', method='xml').strip().replace("<head>", '').replace("<head rend=\"I\">", '').replace("<head rend=\"G\">", '').replace("<head rend=\"M\">", '').replace("</head>", '').replace("<foreign xml:lang=\"fr\">", '').replace("</foreign>", '')
+                    instance.head.text = tostring(sub_element, encoding='unicode', method='xml').strip().replace("<head>", '').replace("<head rend=\"I\">", '').replace("<head rend=\"G\">", '').replace("<head rend=\"M\">", '').replace("</head>", '').replace("<foreign xml:lang=\"fr\">", '').replace("</foreign>", '')
                 else:
-                    instance.head = tostring(sub_element, encoding='unicode', method='text').strip()
+                    instance.head.text = tostring(sub_element, encoding='unicode', method='text').strip()
                 continue
             elif sub_element.tag == "foreign":
                 # 'foreign' elements indicate lang => ignore them or directly get sub-elements
@@ -163,8 +164,16 @@ def get_sub_elements(instance, element, xml_type='TEI', keep_highlighted=False):
                 # A 'respStmt' object has already been created => simply set its name
                 instance.name = sub_element.text
                 continue
+        else: # xml_type == 'PCLv8' or 'PCLv9'
+            # Clean XML
+            if sub_element.text is not None:
+                sub_element.text = sub_element.text.strip()
         # Create TEI sub-instance corresponding to XML sub-element
-        sub_instance = factory(sub_element.tag, sub_element.attrib)
+        sub_instance = None
+        if sub_element.tag == 'TEI':
+            sub_instance = factory(xml_type, sub_element.attrib)
+        else:
+            sub_instance = factory(sub_element.tag, sub_element.attrib)
         try:
             # If instance owns a 'text' attribute, set it
             if sub_instance.text is None:

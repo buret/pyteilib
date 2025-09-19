@@ -26,37 +26,69 @@ def export_header(tei, filename):
         id = tei.id
         title = tei.teiHeader.fileDesc.titleStmt.title
         subtitle = tei.teiHeader.fileDesc.titleStmt.subtitle
-        author_firstname1 = tei.teiHeader.fileDesc.titleStmt.author[0].name.forename
-        author_lastname1 = tei.teiHeader.fileDesc.titleStmt.author[0].name.surname
-        author_firstname2 = tei.teiHeader.fileDesc.titleStmt.author[1].name.forename
-        author_lastname2 = tei.teiHeader.fileDesc.titleStmt.author[1].name.surname
-        author_firstname3 = tei.teiHeader.fileDesc.titleStmt.author[2].name.forename
-        author_lastname3 = tei.teiHeader.fileDesc.titleStmt.author[2].name.surname
-        translator_firstname1 = tei.teiHeader.fileDesc.titleStmt.respStmt[0].name.forename
-        translator_lastname1 = tei.teiHeader.fileDesc.titleStmt.respStmt[0].name.surname
-        translator_firstname2 = tei.teiHeader.fileDesc.titleStmt.respStmt[1].name.forename
-        translator_lastname2 = tei.teiHeader.fileDesc.titleStmt.respStmt[1].name.surname
-        translator_firstname3 = tei.teiHeader.fileDesc.titleStmt.respStmt[2].name.forename
-        translator_lastname3 = tei.teiHeader.fileDesc.titleStmt.respStmt[2].name.surname
-        transcriber_firstname1 = tei.teiHeader.fileDesc.titleStmt.respStmt[3].name.forename
-        transcriber_lastname1  = tei.teiHeader.fileDesc.titleStmt.respStmt[3].name.surname
+        author_firstname1 = None
+        author_lastname1 = None
+        author_firstname2 = None
+        author_lastname2 = None
+        author_firstname3 = None
+        author_lastname3 = None
+        try:
+            author_firstname1 = tei.teiHeader.fileDesc.titleStmt.author[0].name.forename
+            author_lastname1 = tei.teiHeader.fileDesc.titleStmt.author[0].name.surname
+            author_firstname2 = tei.teiHeader.fileDesc.titleStmt.author[1].name.forename
+            author_lastname2 = tei.teiHeader.fileDesc.titleStmt.author[1].name.surname
+            author_firstname3 = tei.teiHeader.fileDesc.titleStmt.author[2].name.forename
+            author_lastname3 = tei.teiHeader.fileDesc.titleStmt.author[2].name.surname
+        except IndexError:
+            pass
+        translator_firstname1 = None
+        translator_lastname1 = None
+        translator_firstname2 = None
+        translator_lastname2 = None
+        translator_firstname3 = None
+        translator_lastname3 = None
+        transcriber_firstname1 = None
+        transcriber_lastname1  = None
+        try:
+            translator_firstname1 = tei.teiHeader.fileDesc.titleStmt.respStmt[0].name.forename
+            translator_lastname1 = tei.teiHeader.fileDesc.titleStmt.respStmt[0].name.surname
+            translator_firstname2 = tei.teiHeader.fileDesc.titleStmt.respStmt[1].name.forename
+            translator_lastname2 = tei.teiHeader.fileDesc.titleStmt.respStmt[1].name.surname
+            translator_firstname3 = tei.teiHeader.fileDesc.titleStmt.respStmt[2].name.forename
+            translator_lastname3 = tei.teiHeader.fileDesc.titleStmt.respStmt[2].name.surname
+            transcriber_firstname1 = tei.teiHeader.fileDesc.titleStmt.respStmt[3].name.forename
+            transcriber_lastname1  = tei.teiHeader.fileDesc.titleStmt.respStmt[3].name.surname
+        except IndexError:
+            pass
         collection = tei.teiHeader.fileDesc.titleStmt.collectionStmt.collection
-        resp_collection_firstname1 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.forename
-        resp_collection_lastname1 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.surname
-        resp_collection_firstname2 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.forename
-        resp_collection_lastname2 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.surname
-        resp_collection_firstname3 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[2].name.forename
-        resp_collection_lastname3 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[2].name.surname
+        resp_collection_firstname1 = None
+        resp_collection_lastname1 = None
+        resp_collection_firstname2 = None
+        resp_collection_lastname2 = None
+        resp_collection_firstname3 = None
+        resp_collection_lastname3 = None
+        try:
+            resp_collection_firstname1 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.forename
+            resp_collection_lastname1 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.surname
+            resp_collection_firstname2 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.forename
+            resp_collection_lastname2 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.surname
+            resp_collection_firstname3 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[2].name.forename
+            resp_collection_lastname3 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[2].name.surname
+        except IndexError:
+            pass
         words = tei.teiHeader.fileDesc.extent.measure.quantity
         publisher = tei.teiHeader.fileDesc.publicationStmt.publisher
         pubPlace = tei.teiHeader.fileDesc.publicationStmt.pubPlace
         date = tei.teiHeader.fileDesc.publicationStmt.date
-        licence = tei.teiHeader.fileDesc.publicationStmt.availability.licence
+        licence = tei.teiHeader.fileDesc.publicationStmt.availability.licence.text
+        if tei.teiHeader.fileDesc.publicationStmt.availability.licence.p is not None:
+            licence += '\n' + tei.teiHeader.fileDesc.publicationStmt.availability.licence.p.text
         note = ''
         for n in tei.teiHeader.fileDesc.notesStmt.note:
-            note += n + '\n'
+            if n.text is not None:
+                note += n.text + '\n'
         note = note.rstrip('\n')
-        edition = tei.teiHeader.fileDesc.editionStmt.edition
+        edition = tei.teiHeader.fileDesc.editionStmt.edition.text
         sourceDesc = tei.teiHeader.fileDesc.sourceDesc.text
         projectDesc = ''
         for p in tei.teiHeader.encodingDesc.projectDesc.p:
@@ -72,40 +104,80 @@ def export_header(tei, filename):
             dialect = tei.teiHeader.profileDesc.langUsage.language.variant
         creationDate = tei.teiHeader.profileDesc.creation.date
         derivation = tei.teiHeader.profileDesc.textDesc.derivation.type
-        domain1 = tei.teiHeader.profileDesc.textDesc.domain[0].type
-        domain2 = tei.teiHeader.profileDesc.textDesc.domain[1].type
-        domain3 = tei.teiHeader.profileDesc.textDesc.domain[2].type
-        genre1 = tei.teiHeader.profileDesc.textDesc.genre[0].type
-        genre2 = tei.teiHeader.profileDesc.textDesc.genre[1].type
-        genre3 = tei.teiHeader.profileDesc.textDesc.genre[2].type
+        domain1 = None
+        domain2 = None
+        domain3 = None
+        try:
+            domain1 = tei.teiHeader.profileDesc.textDesc.domain[0].type
+            domain2 = tei.teiHeader.profileDesc.textDesc.domain[1].type
+            domain3 = tei.teiHeader.profileDesc.textDesc.domain[2].type
+        except IndexError:
+            pass
+        genre1 = None
+        genre2 = None
+        genre3 = None
+        try:
+            genre1 = tei.teiHeader.profileDesc.textDesc.genre[0].type
+            genre2 = tei.teiHeader.profileDesc.textDesc.genre[1].type
+            genre3 = tei.teiHeader.profileDesc.textDesc.genre[2].type
+        except IndexError:
+            pass
         textForm = tei.teiHeader.profileDesc.textDesc.textForm.type
         csv_dict = {'file': file, 'id': id, 'title':title, 'subtitle':subtitle, 'author-firstname1':author_firstname1, 'author-lastname1':author_lastname1, 'author-firstname2':author_firstname2, 'author-lastname2':author_lastname2, 'author-firstname3':author_firstname3, 'author-lastname3':author_lastname3, 'translator-firstname1':translator_firstname1, 'translator-lastname1':translator_lastname1, 'translator-firstname2':translator_firstname2, 'translator-lastname2':translator_lastname2, 'translator-firstname3':translator_firstname3, 'translator-lastname3':translator_lastname3, 'transcriber-firstname1':transcriber_firstname1, 'transcriber-lastname1':transcriber_lastname1, 'collection':collection, 'resp_collection-firstname1':resp_collection_firstname1, 'resp_collection-lastname1':resp_collection_lastname1, 'resp_collection-firstname2':resp_collection_firstname2, 'resp_collection-lastname2':resp_collection_lastname2, 'resp_collection-firstname3':resp_collection_firstname3, 'resp_collection-lastname3':resp_collection_lastname3, 'words':words, 'publisher':publisher, 'pubPlace':pubPlace, 'date':date, 'licence':licence, 'note':note, 'edition':edition, 'sourceDesc':sourceDesc, 'projectDesc':projectDesc, 'language':language, 'language_ori':language_ori, 'dialect':dialect, 'creationDate':creationDate, 'derivation':derivation, 'domain1':domain1, 'domain2':domain2, 'domain3':domain3, 'genre1':genre1, 'genre2':genre2, 'genre3':genre3, 'textForm':textForm}
         if tei.__class__.__name__ == "PCLv8":
             writer.writerow(csv_dict)
         elif tei.__class__.__name__ == "PCLv9":
             ## Add row values for PCLv9
-            author_birth1 = tei.teiHeader.fileDesc.titleStmt.author[0].birth
-            author_death1 = tei.teiHeader.fileDesc.titleStmt.author[0].death
-            author_place1 = tei.teiHeader.fileDesc.titleStmt.author[0].placeName
-            author_birth2 = tei.teiHeader.fileDesc.titleStmt.author[1].birth
-            author_death2 = tei.teiHeader.fileDesc.titleStmt.author[1].death
-            author_place2 = tei.teiHeader.fileDesc.titleStmt.author[1].placeName
-            author_birth3 = tei.teiHeader.fileDesc.titleStmt.author[2].birth
-            author_death3 = tei.teiHeader.fileDesc.titleStmt.author[2].death
-            author_place3 = tei.teiHeader.fileDesc.titleStmt.author[2].placeName
-            translator_birth1 = tei.teiHeader.fileDesc.titleStmt.respStmt[0].birth
-            translator_death1 = tei.teiHeader.fileDesc.titleStmt.respStmt[0].death
-            translator_birth2 = tei.teiHeader.fileDesc.titleStmt.respStmt[1].birth
-            translator_death2 = tei.teiHeader.fileDesc.titleStmt.respStmt[1].death
-            translator_birth3 = tei.teiHeader.fileDesc.titleStmt.respStmt[2].birth
-            translator_death3 = tei.teiHeader.fileDesc.titleStmt.respStmt[2].death
-            publisher_provider_name = tei.teiHeader.fileDesc.titleStmt.respStmt[4].name
-            publisher_provider_date = tei.teiHeader.fileDesc.titleStmt.respStmt[4].date
-            project_provider_name = tei.teiHeader.fileDesc.titleStmt.respStmt[5].name
-            teihdr_creator_name = tei.teiHeader.fileDesc.titleStmt.respStmt[6].name
-            teihdr_creator_date = tei.teiHeader.fileDesc.titleStmt.respStmt[6].date
-            teibdy_creator_name = tei.teiHeader.fileDesc.titleStmt.respStmt[7].name
-            teibdy_creator_date = tei.teiHeader.fileDesc.titleStmt.respStmt[7].date
+            author_birth1 = None
+            author_death1 = None
+            author_place1 = None
+            author_birth2 = None
+            author_death2 = None
+            author_place2 = None
+            author_birth3 = None
+            author_death3 = None
+            author_place3 = None
+            try:
+                author_birth1 = tei.teiHeader.fileDesc.titleStmt.author[0].birth
+                author_death1 = tei.teiHeader.fileDesc.titleStmt.author[0].death
+                author_place1 = tei.teiHeader.fileDesc.titleStmt.author[0].placeName
+                author_birth2 = tei.teiHeader.fileDesc.titleStmt.author[1].birth
+                author_death2 = tei.teiHeader.fileDesc.titleStmt.author[1].death
+                author_place2 = tei.teiHeader.fileDesc.titleStmt.author[1].placeName
+                author_birth3 = tei.teiHeader.fileDesc.titleStmt.author[2].birth
+                author_death3 = tei.teiHeader.fileDesc.titleStmt.author[2].death
+                author_place3 = tei.teiHeader.fileDesc.titleStmt.author[2].placeName
+            except IndexError:
+                pass
+            translator_birth1 = None
+            translator_death1 = None
+            translator_birth2 = None
+            translator_death2 = None
+            translator_birth3 = None
+            translator_death3 = None
+            publisher_provider_name = None
+            publisher_provider_date = None
+            project_provider_name = None
+            teihdr_creator_name = None
+            teihdr_creator_date = None
+            teibdy_creator_name = None
+            teibdy_creator_date = None
+            try:
+                translator_birth1 = tei.teiHeader.fileDesc.titleStmt.respStmt[0].birth
+                translator_death1 = tei.teiHeader.fileDesc.titleStmt.respStmt[0].death
+                translator_birth2 = tei.teiHeader.fileDesc.titleStmt.respStmt[1].birth
+                translator_death2 = tei.teiHeader.fileDesc.titleStmt.respStmt[1].death
+                translator_birth3 = tei.teiHeader.fileDesc.titleStmt.respStmt[2].birth
+                translator_death3 = tei.teiHeader.fileDesc.titleStmt.respStmt[2].death
+                publisher_provider_name = tei.teiHeader.fileDesc.titleStmt.respStmt[4].name
+                publisher_provider_date = tei.teiHeader.fileDesc.titleStmt.respStmt[4].date
+                project_provider_name = tei.teiHeader.fileDesc.titleStmt.respStmt[5].name
+                teihdr_creator_name = tei.teiHeader.fileDesc.titleStmt.respStmt[6].name
+                teihdr_creator_date = tei.teiHeader.fileDesc.titleStmt.respStmt[6].date
+                teibdy_creator_name = tei.teiHeader.fileDesc.titleStmt.respStmt[7].name
+                teibdy_creator_date = tei.teiHeader.fileDesc.titleStmt.respStmt[7].date
+            except IndexError:
+                pass
             isbn = tei.teiHeader.fileDesc.publicationStmt.idno.text
             dialect_ori = tei.teiHeader.profileDesc.langUsage.language.variantOri
             script = tei.teiHeader.profileDesc.langUsage.language.script
@@ -114,8 +186,13 @@ def export_header(tei, filename):
             for corpus in tei.teiHeader.profileDesc.textClass.keywords.term:
                 predefined_corpora += corpus.text + ' ; '
             predefined_corpora = predefined_corpora.rstrip(' ; ')
-            contributor_date1 = tei.teiHeader.revisionDesc.listChange.change[0].when
-            contributor_name1 = tei.teiHeader.revisionDesc.listChange.change[0].who
+            contributor_date1 = None
+            contributor_name1 = None
+            try:
+                contributor_date1 = tei.teiHeader.revisionDesc.listChange.change[0].when
+                contributor_name1 = tei.teiHeader.revisionDesc.listChange.change[0].who
+            except IndexError:
+                pass
             csv_dict.update({'author-birth1':author_birth1, 'author-death1':author_death1, 'author-place1':author_place1, 'author-birth2':author_birth2, 'author-death2':author_death2, 'author-place2':author_place2, 'author-birth3':author_birth3, 'author-death3':author_death3, 'author-place3':author_place3, 'translator-birth1':translator_birth1, 'translator-death1':translator_death1, 'translator-birth2':translator_birth2, 'translator-death2':translator_death2, 'translator-birth3':translator_birth3, 'translator-death3':translator_death3, 'publisher_provider-name':publisher_provider_name, 'publisher_provider-date':publisher_provider_date, 'project_provider-name':project_provider_name, 'teihdr_creator-name':teihdr_creator_name, 'teihdr_creator-date':teihdr_creator_date, 'teibdy_creator-name':teibdy_creator_name, 'teibdy_creator-date':teibdy_creator_date, 'isbn':isbn, 'dialect_ori':dialect_ori, 'script':script, 'script_ori':script_ori, 'predefined_corpora':predefined_corpora, 'contributor-date1':contributor_date1, 'contributor-name1':contributor_name1})
             writer.writerow(csv_dict)
         csv_file.close()

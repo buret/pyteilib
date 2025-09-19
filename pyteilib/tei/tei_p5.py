@@ -78,10 +78,12 @@ class respStmt():
 class collectionStmt():
     def __init__(self):
         self.collection = None
-        self.respStmt = None
+        self.respStmt = []
     def __del__(self):
-        if self.respStmt is not None:
-            del self.respStmt
+        for respStmt in self.respStmt:
+            #if respStmt.name is not None:
+                #del respStmt.name
+            del respStmt
 
 class titleStmt():
     """! TEI header file description / title statement class.
@@ -123,12 +125,15 @@ class titleStmt():
 class edition():
     """! TEI header file description / edition statement / edition class.
     """
-    def __init__(self):
+    def __init__(self, text=None):
         """! @brief Constructor.
         "(edition) describes the particularities of one edition of a text" (tei-c.org).
+        @param text Contents.
         @return A TEI header file description / edition statement / edition instance.
         """
-        ## "May contain analysis: c cl interp interpGrp m pc phr s span spanGrp w / certainty: certainty precision respons / core: abbr add address binaryObject cb choice cit corr date del distinct ellipsis email emph expan foreign gap gb gloss graphic hi index lb measure measureGrp media mentioned milestone name note noteGrp num orig pb ptr q quote ref reg rs ruby said sic soCalled term time title unclear unit / dictionaries: lang oRef pRef / figures: figure formula notatedMusic / gaiji: g / header: idno / iso-fs: fLib fs fvLib / linking: alt altGrp anchor join joinGrp link linkGrp seg timeline / msdescription: catchwords depth dim dimensions height heraldry locus locusGrp material objectType origDate origPlace secFol signatures stamp watermark width / namesdates: addName affiliation bloc climate country district eventName forename genName geo geogFeat geogName location nameLink objectName offset orgName persName persPronouns placeName population region roleName settlement state surname terrain trait / spoken: incident kinesic pause shift vocal writing / tagdocs: att code gi ident listRef specDesc specList tag val / textcrit: app witDetail / textstructure: floatingText / transcr: addSpan am damage damageSpan delSpan ex fw handShift listTranspose metamark mod redo restore retrace secl space subst substJoin supplied surplus undo / verse: caesura rhyme / character data" (tei-c.org)
+        ## "May contain analysis: c cl interp interpGrp m pc phr s span spanGrp w / certainty: certainty precision respons / core: abbr add address binaryObject cb choice cit corr date del distinct ellipsis email emph expan foreign gap gb gloss graphic hi index lb measure measureGrp media mentioned milestone name note noteGrp num orig pb ptr q quote ref reg rs ruby said sic soCalled term time title unclear unit / dictionaries: lang oRef pRef / figures: figure formula notatedMusic / gaiji: g / header: idno / iso-fs: fLib fs fvLib / linking: alt altGrp anchor join joinGrp link linkGrp seg timeline / msdescription: catchwords depth dim dimensions height heraldry locus locusGrp material objectType origDate origPlace secFol signatures stamp watermark width / namesdates: addName affiliation bloc climate country district eventName forename genName geo geogFeat geogName location nameLink objectName offset orgName persName persPronouns placeName population region roleName settlement state surname terrain trait / spoken: incident kinesic pause shift vocal writing / tagdocs: att code gi ident listRef specDesc specList tag val / textcrit: app witDetail / textstructure: floatingText / transcr: addSpan am damage damageSpan delSpan ex fw handShift listTranspose metamark mod redo restore retrace secl space subst substJoin supplied surplus undo / verse: caesura rhyme" (tei-c.org)
+        # "character data" (tei-c.org)
+        self.text = None
         # "(date) contains a date in any format. May contain character data" (tei-c.org)
         self.date = None
 
@@ -144,13 +149,14 @@ class editionStmt():
         # "(statement of responsibility) supplies a statement of responsibility for the intellectual content of a text, edition, recording, or series, where the specialized elements for authors, editors, etc. do not suffice or do not apply. May also be used to encode information about individuals or organizations which have played a role in the production or distribution of a bibliographic work." (tei-c.org)
         self.respStmt = respStmt()
         # "(edition) describes the particularities of one edition of a text." (tei-c.org)
-        self.edition = None # used only in BTO
+        self.edition = edition()
 
     def __del__(self):
         """! @brief Destructor.
         Release responsible statement instance.
         """
         del self.respStmt
+        #del self.edition
 
 class measure():
     """! TEI header file description / extent / measure class.
@@ -221,6 +227,20 @@ class idno():
 
         ## "May contain gaiji: g / header: idno / character data" (tei-c.org)
         self.text = text
+
+class licence():
+    """! TEI header file description / publication statement / availability /licence class.
+    """
+    def __init__(self, text=None):
+        """! @brief Constructor.
+        "(licence) contains information about a licence or other legal agreement applicable to the text" (tei-c.org).
+        @param text Contents.
+        @return A TEI header file description / publication statement / availability /licence instance.
+        """
+        # "character data" (tei-c.org)
+        self.text = text
+        # "(paragraph) marks paragraphs in prose." (tei-c.org)
+        self.p = None
 
 class availability():
     """! TEI header file description / publication statement / availability class.
@@ -427,6 +447,8 @@ class sourceDesc():
         self.biblStruct = None # used only in BTO
         # "(citation list) contains a list of bibliographic citations of any kind." (tei-c.org)
         #self.listBibl = None # not used
+        # "(paragraph) marks paragraphs in prose." (tei-c.org)
+        self.p = None
         # "(manuscript description) contains a description of a single identifiable manuscript or other text-bearing object such as an early printed book." (tei-c.org)
         self.msDesc = None
 
@@ -741,7 +763,7 @@ class domain():
 
 # Not TEI-compliant, used only in PCL
 class genre():
-    def __init__(self, lang=None, type=None):
+    def __init__(self, lang="en", type=None):
         self.lang = lang
         self.type = type
 class textForm():
@@ -760,10 +782,10 @@ class textDesc():
         # "(derivation) describes the nature and extent of originality of this text." (tei-c.org)
         self.derivation = derivation()
         # "(domain of use) describes the most important social context in which the text was realized or for which it is intended, for example private vs. public, education, religion, etc." (tei-c.org)
-        self.domain = [domain(), domain(), domain()]
+        self.domain = []
 
         ## Not TEI-compliant
-        self.genre = [genre(), genre(), genre(), genre()] # used only in PCL
+        self.genre = [] # used only in PCL
         self.textForm = textForm() # used only in PCL
 
     def __del__(self):
@@ -952,17 +974,36 @@ class note():
 
         self.div = [] # for BTO
 
+class head():
+    """! TEI text front or body or back / division / head class.
+    """
+    def __init__(self, text=None):
+        """! @brief Constructor.
+        "(heading) contains any type of heading, for example the title of a section, or the heading of a list, glossary, manuscript description, etc" (tei-c.org).
+        @param text Contents.
+        @return A TEI text front or body or back / division / head instance.
+        """
+        # "May contain character data" (tei-c.org)
+        self.text = None # used only in BTO
+        # "(arbitrary segment) represents any segmentation of text below the ‘chunk’ level." (tei-c.org)
+        self.seg = None # used only in PCL
+
 class div():
-    """! TEI text front or body or front / division class.
+    """! TEI text front or body or back / division class.
     """
     def __init__(self, type=None, text=None):
         """! @brief Constructor.
-        TEI text front or body / division instance.
-        @return A TEI text front or body / division instance.
+        "(text division) contains a subdivision of the front, body, or back of a text" (tei-c.org)
+        @param type "(att.typed > type) characterizes the element in some sense, using any convenient classification scheme or typology" (tei-c.org).
+        @param text Contents.
+        @return A TEI text front or body or back / division instance.
         """
+        ## "Attributes" (tei-c.org)
+        # "(att.typed > type) characterizes the element in some sense, using any convenient classification scheme or typology." (tei-c.org)
         self.type = type
+
         self.text = text
-        self.head = None
+        self.head = head()
         self.p = []
         self.div = []
         self.epigraph = None # for BTO

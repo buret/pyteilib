@@ -4,7 +4,7 @@
 """! @package tei
 """
 
-from tei_p5 import TEI, author, name, respStmt, collectionStmt, extent, idno, notesStmt, textDesc, textClass, revisionDesc
+from tei_p5 import TEI, author, name, respStmt, collectionStmt, extent, idno, licence, notesStmt, textDesc, domain, genre, textClass, revisionDesc
 
 ### TEI ParCoLab v9
 
@@ -30,8 +30,11 @@ class PCLv9(TEI):
             resp_stmt.name = name()
         self.teiHeader.fileDesc.extent = extent()
         self.teiHeader.fileDesc.publicationStmt.idno = idno()
+        self.teiHeader.fileDesc.publicationStmt.availability.licence = licence()
         self.teiHeader.fileDesc.notesStmt = notesStmt()
         self.teiHeader.profileDesc.textDesc = textDesc()
+        self.teiHeader.profileDesc.textDesc.domain = [domain(), domain(), domain()]
+        self.teiHeader.profileDesc.textDesc.genre = [genre(), genre(), genre(), genre()]
         self.teiHeader.profileDesc.textClass = textClass()
         self.teiHeader.revisionDesc = revisionDesc()
 
@@ -41,8 +44,13 @@ class PCLv9(TEI):
         """
         del self.teiHeader.revisionDesc
         del self.teiHeader.profileDesc.textClass
+        for genre in self.teiHeader.profileDesc.textDesc.genre:
+            del genre
+        for domain in self.teiHeader.profileDesc.textDesc.domain:
+            del domain
         del self.teiHeader.profileDesc.textDesc
         del self.teiHeader.fileDesc.notesStmt
+        del self.teiHeader.fileDesc.publicationStmt.availability.licence
         del self.teiHeader.fileDesc.publicationStmt.idno
         del self.teiHeader.fileDesc.extent
         for respStmt in self.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt:

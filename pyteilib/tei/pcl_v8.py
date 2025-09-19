@@ -4,7 +4,7 @@
 """! @package tei
 """
 
-from tei_p5 import TEI, author, name, respStmt, collectionStmt, extent, notesStmt, category, textDesc
+from tei_p5 import TEI, author, name, respStmt, collectionStmt, extent, licence, notesStmt, category, textDesc, domain, genre
 
 ### TEI ParCoLab v8
 
@@ -29,18 +29,26 @@ class PCLv8(TEI):
         for resp_stmt in self.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt:
             resp_stmt.name = name()
         self.teiHeader.fileDesc.extent = extent()
+        self.teiHeader.fileDesc.publicationStmt.availability.licence = licence()
         self.teiHeader.fileDesc.notesStmt = notesStmt()
         self.teiHeader.profileDesc.category = category()
         self.teiHeader.profileDesc.category.type = "dialecte"
         self.teiHeader.profileDesc.textDesc = textDesc()
+        self.teiHeader.profileDesc.textDesc.domain = [domain(), domain(), domain()]
+        self.teiHeader.profileDesc.textDesc.genre = [genre(), genre(), genre(), genre()]
 
     def __del__(self):
         """! @brief Destructor.
         Release all created instances.
         """
+        for genre in self.teiHeader.profileDesc.textDesc.genre:
+            del genre
+        for domain in self.teiHeader.profileDesc.textDesc.domain:
+            del domain
         del self.teiHeader.profileDesc.textDesc
         del self.teiHeader.profileDesc.category
         del self.teiHeader.fileDesc.notesStmt
+        del self.teiHeader.fileDesc.publicationStmt.availability.licence
         del self.teiHeader.fileDesc.extent
         for respStmt in self.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt:
             if respStmt.name is not None:

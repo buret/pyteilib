@@ -13,6 +13,7 @@ def xml_tei_write(object, filename, xml_type='TEI'):
     @param filename The name of the XML TEI file to write with full path, for instance 'user/output/example.xml'.
     @param xml_type The type of the XML TEI file to write: 'BTO', 'PCLv8', 'PCLv9'.
     """
+    print("Write " + object.__class__.__name__ + " to XML file " + filename)
     # Create the root XML element
     if (object.__class__.__base__.__name__ == "TEI"):
         object.set_filename(filename)

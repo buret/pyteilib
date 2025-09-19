@@ -77,9 +77,9 @@ def create_sub_divisions(body_div_pcl, sub_div_bto):
     @return None.
     """
     for divn in sub_div_bto:
-        if divn.text is not None or divn.head is not None or len(divn.p) > 0 or len(divn.div) > 0:
+        if divn.text is not None or divn.head.text is not None or len(divn.p) > 0 or len(divn.div) > 0:
             sub_div_pcl = div(text=divn.text)
-            sub_div_pcl.head = divn.head
+            sub_div_pcl.head.seg = divn.head.text
             for divn_p in divn.p:
                 sub_div_pcl_p = p(text=divn_p.text)
                 for divn_p_s in divn_p.s:
@@ -167,11 +167,11 @@ def transform_bto2pcl(tei_bto, xml_type='TEI'):
 
     # Set edition
     if series is None:
-        tei_pcl.teiHeader.fileDesc.editionStmt.edition = idno
+        tei_pcl.teiHeader.fileDesc.editionStmt.edition.text = idno
     elif idno is None:
-        tei_pcl.teiHeader.fileDesc.editionStmt.edition = series
+        tei_pcl.teiHeader.fileDesc.editionStmt.edition.text = series
     else:
-        tei_pcl.teiHeader.fileDesc.editionStmt.edition = series + idno.text
+        tei_pcl.teiHeader.fileDesc.editionStmt.edition.text = series + idno.text
 
     ## publicationStmt
     # Set publisher
@@ -181,8 +181,8 @@ def transform_bto2pcl(tei_bto, xml_type='TEI'):
     # Set date
     tei_pcl.teiHeader.fileDesc.publicationStmt.date = tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.date
     # Set availability and licence
-    tei_pcl.teiHeader.fileDesc.publicationStmt.availability.status = tei_bto.teiHeader.fileDesc.publicationStmt.availability.status
-    tei_pcl.teiHeader.fileDesc.publicationStmt.availability.licence = tei_bto.teiHeader.fileDesc.publicationStmt.availability.p.text
+    tei_pcl.teiHeader.fileDesc.publicationStmt.availability.licence.text = tei_bto.teiHeader.fileDesc.publicationStmt.availability.status
+    tei_pcl.teiHeader.fileDesc.publicationStmt.availability.licence.p = p(tei_bto.teiHeader.fileDesc.publicationStmt.availability.p.text)
 
     ## Hard-code sourceDesc
     tei_pcl.teiHeader.fileDesc.sourceDesc.text = "Imported from BaTelÒc"
@@ -268,9 +268,9 @@ def transform_bto2pcl(tei_bto, xml_type='TEI'):
 
     ## Clone body divisions and sub-divisions
     for div_bto in tei_bto.text.body.div:
-        if (div_bto.text is not None and div_bto.text != '') or div_bto.head is not None or len(div_bto.p) > 0 or len(div_bto.div) > 0:
+        if (div_bto.text is not None and div_bto.text != '') or div_bto.head.text is not None or len(div_bto.p) > 0 or len(div_bto.div) > 0:
             div_pcl = div(text=div_bto.text)
-            div_pcl.head = div_bto.head
+            div_pcl.head.seg = div_bto.head.text
             for div_bto_p in div_bto.p:
                 div_pcl_p = p(text=div_bto_p.text)
                 for div_bto_p_s in div_bto_p.s:
@@ -283,9 +283,9 @@ def transform_bto2pcl(tei_bto, xml_type='TEI'):
     if tei_bto.text.back is not None:
         # Clone epilogue divisions and sub-divisions
         for div_epi in tei_bto.text.back.epilogue.div:
-            if (div_epi.text is not None and div_epi.text != '') or div_epi.head is not None or len(div_epi.p) > 0 or len(div_epi.div) > 0:
+            if (div_epi.text is not None and div_epi.text != '') or div_epi.head.text is not None or len(div_epi.p) > 0 or len(div_epi.div) > 0:
                 div_pcl = div(text=div_epi.text)
-                div_pcl.head = div_epi.head
+                div_pcl.head.seg = div_epi.head.text
                 for div_epi_p in div_epi.p:
                     div_pcl_p = p(text=div_epi_p.text)
                     for div_epi_p_s in div_epi_p.s:
@@ -297,7 +297,7 @@ def transform_bto2pcl(tei_bto, xml_type='TEI'):
     ## Now, compute TEI header fileDesc extent
     for div_bdy in tei_pcl.text.body.div:
         tei_pcl.text.body.add_text(div_bdy.text, new_line=True)
-        tei_pcl.text.body.add_text(div_bdy.head, new_line=True)
+        tei_pcl.text.body.add_text(div_bdy.head.seg, new_line=True)
         for p_bdy in div_bdy.p:
             tei_pcl.text.body.add_text(p_bdy.text, new_line=True)
             for s_bdy in p_bdy.s:

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <teiCorpus>
-    <TEI>
+    <TEI id="test_2">
       <teiHeader>
         <fileDesc>
           <titleStmt>
@@ -26,7 +26,7 @@
               </name>
             </respStmt>
             <respStmt>
-              <resp>translator2</resp>
+              <resp>translator</resp>
               <name>
                 <forename>Firstname2</forename>
                 <surname>Lastname2</surname>
@@ -61,7 +61,7 @@
             <edition>Series 123</edition>
           </editionStmt>
           <extent>
-            <measure unit="words" quantity="0"/>
+            <measure unit="words" quantity="114"/>
           </extent>
           <publicationStmt>
             <publisher>Publisher</publisher>
@@ -138,6 +138,9 @@
             </p>
           </div>
           <div>
+              <head>
+                  <seg>Titre du chapitre</seg>
+              </head>
             <p>
               <s>Maintenant testons les abbréviations comme F.T.P ou F.F.I. par exemple.</s>
               <s>Ou St. (St ?) Mr. et Ste Mme.</s>
