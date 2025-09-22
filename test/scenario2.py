@@ -5,10 +5,9 @@
 # Also automatically define 'ftest_path' as location of pyteilib/examples/ folder
 from startup import *
 import os
-from datetime import datetime
 
 INPUT_DIR = ftest_path + "input/"
-OUTPUT_DIR = ftest_path + "ouput/"
+OUTPUT_DIR = ftest_path + "output/"
 # Create result folder
 if not os.path.exists(OUTPUT_DIR):
     os.mkdir(OUTPUT_DIR)

@@ -145,7 +145,7 @@ def transform_bto2pcl(tei_bto, xml_type='TEI'):
             elif item.resp.startswith("pretractament"):
                 # Set TEI body creator
                 tei_pcl.teiHeader.fileDesc.titleStmt.respStmt[7].name = item.name
-    # Hard code collection
+    # Hard-code collection
     tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.collection = "BaTelÒc"
     # Split principal's name to set responsible's forename and surname
     list_of_names = tei_bto.teiHeader.fileDesc.titleStmt.principal.split()

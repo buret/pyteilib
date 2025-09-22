@@ -8,7 +8,7 @@ import os
 from datetime import datetime
 
 INPUT_DIR = ftest_path + "input/"
-OUTPUT_DIR = ftest_path + "ouput/"
+OUTPUT_DIR = ftest_path + "output/"
 # Create result folder
 if not os.path.exists(OUTPUT_DIR):
     os.mkdir(OUTPUT_DIR)
@@ -90,14 +90,14 @@ assert tei_bto.teiHeader.profileDesc.langUsage.language.ident == "oc", tei_bto.t
 assert tei_bto.teiHeader.profileDesc.langUsage.language.text == "occitan", tei_bto.teiHeader.profileDesc.langUsage.language.text
 
 # Test text front
-assert tei_bto.text.front.doctitle.bibl.docAuthor == "Firstname Lastname", tei_bto.text.front.doctitle.bibl.docAuthor
-assert tei_bto.text.front.doctitle.titlePart.type == "principal", tei_bto.text.front.doctitle.titlePart.type
-assert tei_bto.text.front.doctitle.titlePart.text == "TITLE", tei_bto.text.front.doctitle.titlePart.text
-assert tei_bto.text.front.doctitle.dedicace == "Per Firstname", tei_bto.text.front.doctitle.dedicace
-assert tei_bto.text.front.doctitle.epigraph.quote.lang == "en", tei_bto.text.front.doctitle.epigraph.quote.lang
-assert tei_bto.text.front.doctitle.epigraph.quote.text == "This is a quote.", tei_bto.text.front.doctitle.epigraph.quote.text
-assert tei_bto.text.front.doctitle.epigraph.cit.text == "Citation epigraph.", tei_bto.text.front.doctitle.epigraph.cit.text
-assert tei_bto.text.front.doctitle.epigraph.bibl.text == "Firstname LASTNAME.", tei_bto.text.front.doctitle.epigraph.bibl.text
+assert tei_bto.text.front.docTitle.bibl.docAuthor == "Firstname Lastname", tei_bto.text.front.docTitle.bibl.docAuthor
+assert tei_bto.text.front.docTitle.titlePart.type == "principal", tei_bto.text.front.docTitle.titlePart.type
+assert tei_bto.text.front.docTitle.titlePart.text == "TITLE", tei_bto.text.front.docTitle.titlePart.text
+assert tei_bto.text.front.docTitle.dedicace == "Per Firstname", tei_bto.text.front.docTitle.dedicace
+assert tei_bto.text.front.docTitle.epigraph.quote.lang == "en", tei_bto.text.front.docTitle.epigraph.quote.lang
+assert tei_bto.text.front.docTitle.epigraph.quote.text == "This is a quote.", tei_bto.text.front.docTitle.epigraph.quote.text
+assert tei_bto.text.front.docTitle.epigraph.cit.text == "Citation epigraph.", tei_bto.text.front.docTitle.epigraph.cit.text
+assert tei_bto.text.front.docTitle.epigraph.bibl.text == "Firstname LASTNAME.", tei_bto.text.front.docTitle.epigraph.bibl.text
 assert tei_bto.text.front.titlePage.epigraph.cit.quote.text == "Citation épigraphe 1.", tei_bto.text.front.titlePage.epigraph.cit.quote.text
 assert tei_bto.text.front.titlePage.epigraph.note == "Note épigraphe 1.", tei_bto.text.front.titlePage.epigraph.note
 assert tei_bto.text.front.div[0].type == "preface", tei_bto.text.front.div.type

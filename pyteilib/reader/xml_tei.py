@@ -76,7 +76,7 @@ def get_sub_elements(instance, element, xml_type='TEI', keep_highlighted=False):
     @param keep_highlighted Boolean to keep the <hi> tags or not.
     """
     for sub_element in element:
-        if xml_type == 'BTO': # TODO: add letter ('opener', 'closer') + 'dateline', 'salute', 'formula', 'correction'
+        if xml_type == 'BTO':
             # Fix BaTelÒc naming errors
             if sub_element.tag == "respstmt":
                 sub_element.tag = "respStmt"
@@ -84,10 +84,16 @@ def get_sub_elements(instance, element, xml_type='TEI', keep_highlighted=False):
                 sub_element.tag = "projectDesc"
             elif sub_element.tag == "seriesStmt" and element.tag == "imprint":
                 sub_element.tag = "series"
+            elif sub_element.tag == "titlepage":
+                sub_element.tag = "titlePage"
+            elif sub_element.tag == "doctitle":
+                sub_element.tag = "docTitle"
+            elif sub_element.tag == "titlepart":
+                sub_element.tag = "titlePart"
             # Clean BaTelÒc XML
             if sub_element.text is not None and sub_element.tag != "p" and sub_element.tag != "foreign" and sub_element.tag != "place" and sub_element.tag != "date" and sub_element.tag != "name":
                 sub_element.text = sub_element.text.strip()
-            # Handle BaTelÒc XML TEI text body: 'q', 'hi', 'foreign', 'lg', 'l', 'signed', 'place', 'date', 'name', 'list', 'item', 'address'?
+            # Handle BaTelÒc XML TEI text body: 'q', 'hi', 'foreign', 'lg', 'l', 'signed', 'place', 'date', 'name', 'list', 'item', 'address'
             if sub_element.tag == "q":
                 # 'q' elements indicate a dialog => directly get sub-elements
                 get_sub_elements(instance, sub_element, xml_type, keep_highlighted)
@@ -135,22 +141,44 @@ def get_sub_elements(instance, element, xml_type='TEI', keep_highlighted=False):
                     del sub_element.attrib["type"]
                 except KeyError:
                     pass
-            elif sub_element.tag == "head" and element.tag == "p":
-                # Do not keep 'head' => replace by 's'
+            elif sub_element.tag == "head":
+                if element.tag == "p":
+                    # Do not keep 'head' => replace by 's'
+                    sub_element.tag = "s"
+                    try:
+                        del sub_element.attrib["rend"]
+                    except KeyError:
+                        pass
+                elif element.tag == "s":
+                    if sub_element.text is not None:
+                        if element.text is None:
+                            element.text = ''
+                        # Append text to 's' element
+                        element.text += sub_element.text
+                    continue
+            elif (sub_element.tag == "l" or sub_element.tag == "p") and element.tag == "p":
+                # Do not keep 'l' or 'p' => replace by 's'
                 sub_element.tag = "s"
-                try:
-                    del sub_element.attrib["rend"]
-                except KeyError:
-                    pass
-            elif sub_element.tag == "l" and element.tag == "p":
-                # Do not keep 'l' => replace by 's'
-                sub_element.tag = "s"
-            elif sub_element.tag == "list":
-                # Do not keep 'list' => replace by 'p'
+            elif sub_element.tag == "l" and element.tag == "div":
+                # Do not keep 'l' => replace by 'p'
                 sub_element.tag = "p"
+            elif sub_element.tag == "list":
+                # Do not keep 'list' => replace by 's' or 'p'
+                if element.tag == "p":
+                    sub_element.tag = "s"
+                else:
+                    sub_element.tag = "p"
             elif sub_element.tag == "item":
-                # Do not keep 'item' => replace by 's'
-                sub_element.tag = "s"
+                if element.tag == "s":
+                    if sub_element.text is not None:
+                        if element.text is None:
+                            element.text = ''
+                        # Append text to 's' element
+                        element.text += sub_element.text
+                    continue
+                else:
+                    # Do not keep 'item' => replace by 's'
+                    sub_element.tag = "s"
             # Handle BaTelÒc XML TEI header
             elif sub_element.tag == "extent" and element.tag == "fileDesc":
                 # Simply set the value

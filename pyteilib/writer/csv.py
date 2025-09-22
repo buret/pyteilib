@@ -13,14 +13,15 @@ def export_header(tei, filename):
     """
     print("Export ParCoLab " + tei.__class__.__name__[-2:] + " metadata to CSV file " + filename)
     if tei.__class__.__name__ == "PCLv8" or tei.__class__.__name__ == "PCLv9":
-        csv_file = open(filename, 'w', newline='')
+        csv_file = open(filename, 'a', newline='')
         if tei.__class__.__name__ == "PCLv8":
             fieldnames = ['file', 'id', 'title', 'subtitle', 'author-firstname1', 'author-lastname1', 'author-firstname2', 'author-lastname2', 'author-firstname3', 'author-lastname3', 'translator-firstname1', 'translator-lastname1', 'translator-firstname2', 'translator-lastname2', 'translator-firstname3', 'translator-lastname3', 'transcriber-firstname1', 'transcriber-lastname1', 'collection', 'resp_collection-firstname1', 'resp_collection-lastname1', 'resp_collection-firstname2', 'resp_collection-lastname2', 'resp_collection-firstname3', 'resp_collection-lastname3', 'words', 'publisher', 'pubPlace', 'date', 'licence', 'note', 'edition', 'sourceDesc', 'projectDesc', 'language', 'language_ori', 'dialect', 'creationDate', 'derivation', 'domain1', 'domain2', 'domain3', 'genre1', 'genre2', 'genre3', 'textForm']
         elif tei.__class__.__name__ == "PCLv9":
             fieldnames = ['file', 'id', 'title', 'subtitle', 'author-firstname1', 'author-lastname1', 'author-birth1', 'author-death1', 'author-place1', 'author-firstname2', 'author-lastname2', 'author-birth2', 'author-death2', 'author-place2', 'author-firstname3', 'author-lastname3', 'author-birth3', 'author-death3', 'author-place3', 'translator-firstname1', 'translator-lastname1', 'translator-birth1', 'translator-death1', 'translator-firstname2', 'translator-lastname2', 'translator-birth2', 'translator-death2', 'translator-firstname3', 'translator-lastname3', 'translator-birth3', 'translator-death3', 'transcriber-firstname1', 'transcriber-lastname1', 'publisher_provider-name', 'publisher_provider-date', 'project_provider-name', 'teihdr_creator-name', 'teihdr_creator-date', 'teibdy_creator-name', 'teibdy_creator-date', 'collection', 'resp_collection-firstname1', 'resp_collection-lastname1', 'resp_collection-firstname2', 'resp_collection-lastname2', 'resp_collection-firstname3', 'resp_collection-lastname3', 'words', 'publisher', 'pubPlace', 'date', 'isbn', 'licence', 'note', 'edition', 'sourceDesc', 'projectDesc', 'language', 'language_ori', 'dialect', 'dialect_ori', 'script', 'script_ori', 'creationDate', 'derivation', 'domain1', 'domain2', 'domain3', 'genre1', 'genre2', 'genre3', 'textForm', 'predefined_corpora', 'contributor-date1', 'contributor-name1']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        # Write columns name
-        writer.writeheader()
+        # Write columns name if file is empty
+        if os.path.getsize(filename) == 0:
+            writer.writeheader()
         ## Compute row values
         file = os.path.basename(tei.get_filename())
         id = tei.id

@@ -7,7 +7,7 @@ from startup import *
 import os
 
 INPUT_DIR = ftest_path + "input/"
-OUTPUT_DIR = ftest_path + "ouput/"
+OUTPUT_DIR = ftest_path + "output/"
 # Create result folder
 if not os.path.exists(OUTPUT_DIR):
     os.mkdir(OUTPUT_DIR)

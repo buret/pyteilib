@@ -468,7 +468,7 @@ class fileDesc():
         # OPTIONAL BUT RECOMMENDED "(edition statement) groups information relating to one edition of a text." (tei-c.org)
         self.editionStmt = editionStmt()
         # OPTIONAL "(extent) describes the approximate size of a text stored on some carrier medium or of some other object, digital or non-digital, specified in any convenient units." (tei-c.org)
-        self.extent = None # used only in BTO
+        self.extent = None
         # MANDATORY "(publication statement) groups information concerning the publication or distribution of an electronic or other text." (tei-c.org)
         self.publicationStmt = publicationStmt()
         # OPTIONAL "(series statement) groups information about the series, if any, to which a publication belongs." (tei-c.org)
@@ -939,21 +939,34 @@ class s():
     """
     def __init__(self, text=None):
         """! @brief Constructor.
-        TEI text front or body or back / division / paragraph / sentence instance.
+        "(s-unit) contains a sentence-like division of a text" (tei-c.org).
+        @param text Contents.
         @return A TEI text front or body or back / division / paragraph / sentence instance.
         """
+        # "character data" (tei-c.org)
         self.text = text
+        # "(reference) defines a reference to another location, possibly modified by additional text or comment." (tei-c.org)
+        self.ref = None # used only in BTO
 
 class p():
     """! TEI text front or body or back / division / paragraph class.
     """
     def __init__(self, text=None):
         """! @brief Constructor.
-        TEI text front or body or back / division / paragraph instance.
+        "(paragraph) marks paragraphs in prose" (tei-c.org).
+        @param text Contents.
         @return A TEI text front or body or back / division / paragraph instance.
         """
+        # "character data" (tei-c.org)
         self.text = text
+        # "(s-unit) contains a sentence-like division of a text." (tei-c.org)
         self.s = []
+        # "(note) contains a note or annotation." (tei-c.org)
+        self.note = None # used only in BTO
+        # "(reference) defines a reference to another location, possibly modified by additional text or comment." (tei-c.org)
+        self.ref = None # used only in BTO
+        # "(quotation) contains a phrase or passage attributed by the narrator or author to some agency external to the text." (tei-c.org)
+        self.quote = None
 
 # For BaTelÒc
 class note():
@@ -974,6 +987,20 @@ class note():
 
         self.div = [] # for BTO
 
+class closer():
+    """! TEI text body / division / closer class.
+    """
+    def __init__(self, text=None):
+        """! @brief Constructor.
+        "(closer) groups together salutations, datelines, bylines, and similar phrases appearing as a final group at the end of a division, especially of a letter" (tei-c.org).
+        @param text Contents.
+        @return A TEI text body / division / closer instance.
+        """
+        # "character data" (tei-c.org)
+        self.text = text
+        # "(name, proper noun) contains a proper noun or noun phrase." (tei-c.org)
+        self.name = None
+
 class head():
     """! TEI text front or body or back / division / head class.
     """
@@ -993,7 +1020,7 @@ class div():
     """
     def __init__(self, type=None, text=None):
         """! @brief Constructor.
-        "(text division) contains a subdivision of the front, body, or back of a text" (tei-c.org)
+        "(text division) contains a subdivision of the front, body, or back of a text" (tei-c.org).
         @param type "(att.typed > type) characterizes the element in some sense, using any convenient classification scheme or typology" (tei-c.org).
         @param text Contents.
         @return A TEI text front or body or back / division instance.
@@ -1002,12 +1029,32 @@ class div():
         # "(att.typed > type) characterizes the element in some sense, using any convenient classification scheme or typology." (tei-c.org)
         self.type = type
 
-        self.text = text
+        ## May contain May contain analysis: interp interpGrp span spanGrp / certainty: certainty precision respons / cmc: post / core: bibl biblStruct cb cit desc divGen ellipsis gap gb head index l label lb lg list listBibl meeting milestone note noteGrp p pb q quote said sp stage / dictionaries: entry entryFree superEntry / drama: camera caption castList move sound spGrp tech view / figures: figure notatedMusic table / header: biblFull / iso-fs: fLib fs fvLib / linking: ab alt altGrp anchor join joinGrp link linkGrp timeline / msdescription: msDesc / namesdates: listEvent listNym listObject listOrg listPerson listPlace listRelation / nets: eTree forest graph listForest tree / spoken: annotationBlock incident kinesic pause shift u vocal writing / tagdocs: classSpec constraintSpec dataSpec eg egXML elementSpec macroSpec moduleSpec outputRendition schemaSpec specGrp specGrpRef / textcrit: app listApp listWit witDetail / textstructure: argument byline closer dateline div docAuthor docDate epigraph floatingText opener postscript salute signed trailer / transcr: addSpan damageSpan delSpan fw listTranspose metamark space substJoin
+        # "(heading) contains any type of heading, for example the title of a section, or the heading of a list, glossary, manuscript description, etc." (tei-c.org)
         self.head = head()
+        # "(paragraph) marks paragraphs in prose." (tei-c.org)
         self.p = []
+        # "(text division) contains a subdivision of the front, body, or back of a text." (tei-c.org)
         self.div = []
-        self.epigraph = None # for BTO
-        self.note = None # for BTO
+        # "(epigraph) contains a quotation, anonymous or attributed, appearing at the start or end of a section or on a title page." (tei-c.org)
+        self.epigraph = None # used only in BTO
+        # "(cited quotation) contains a quotation from some other document, together with a bibliographic reference to its source." (tei-c.org)
+        self.cit = None # used only in BTO
+        # "(note) contains a note or annotation." (tei-c.org)
+        self.note = None # used only in BTO
+        # "(opener) groups together dateline, byline, salutation, and similar phrases appearing as a preliminary group at the start of a division, especially of a letter." (tei-c.org)
+        self.opener = None # used only in BTO
+        # "(closer) groups together salutations, datelines, bylines, and similar phrases appearing as a final group at the end of a division, especially of a letter." (tei-c.org)
+        self.closer = None # used only in BTO
+        # "(dateline) contains a brief description of the place, date, time, etc. of production of a letter, newspaper story, or other work, prefixed or suffixed to it as a kind of heading or trailer." (tei-c.org)
+        self.dateline = None # used only in BTO
+        # "(salutation) contains a salutation or greeting prefixed to a foreword, dedicatory epistle, or other division of a text, or the salutation in the closing of a letter, preface, etc." (tei-c.org)
+        self.salute = None # used only in BTO
+        # "(quotation) contains a phrase or passage attributed by the narrator or author to some agency external to the text." (tei-c.org)
+        self.quote = None # used only in BTO
+
+        ## Not TEI-compliant
+        self.text = text
 
     def __del__(self):
         """! @brief Destructor.
@@ -1017,64 +1064,94 @@ class div():
             del p
         for div in self.div:
             del div
+        del self.closer
 
-# For BaTelÒc
-# Handle BaTelÒc XML TEI text front: 'doctitle', 'bibl', 'docAuthor', 'titlePart', 'dedicace', 'epigraph', 'quote', 'cit', 'note', 'titlePage', 'prologue'
+## Handle BaTelÒc XML TEI text front: 'docTitle', 'bibl', 'docAuthor', 'titlePart', 'dedicace', 'epigraph', 'quote', 'cit', 'note', 'titlePage', 'prologue'
+
 class bibl():
     """! TEI text front / document title / bibliography class.
     """
     def __init__(self, text=None):
         """! @brief Constructor.
-        TEI text front / document title / bibliography instance.
+        "(bibliographic citation) contains a loosely-structured bibliographic citation of which the sub-components may or may not be explicitly tagged" (tei-c.prg).
+        @param text Contents.
         @return A TEI text front / document title / bibliography instance.
         """
+        # "character data" (tei-c.org)
         self.text = text
-        self.docAuthor = None
-        self.title = None
+        # "(author) in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority." (tei-c.org)
         self.author = None
+        # "(title) contains a title for any kind of work." (tei-c.org)
+        self.title = None
+
+        ## Not TEI-compliant
+        self.docAuthor = None
+
 class titlePart():
     """! TEI text front / document title / title part  class.
     """
     def __init__(self, type=None, text=None):
         """! @brief Constructor.
-        TEI text front / document title / title part instance.
+        "(title part) contains a subsection or division of the title of a work, as indicated on a title page" (tei-c.org).
+        @param type "(att_typed > type) specifies the role of this subdivision of the title" (tei-c.org).
+        @param text Contents.
         @return A TEI text front / document title / title part instance.
         """
+        # Suggested values include: main / sub / alt / short / desc
         self.type = type
+        # "character data" (tei-c.org)
         self.text = text
+
 class quote():
     """! TEI text front / document title or title page / epigraph / citation / quote class.
     """
     def __init__(self, text=None):
         """! @brief Constructor.
-        TEI text front / document title or title page / epigraph / citation / quote instance.
+        "(quotation) contains a phrase or passage attributed by the narrator or author to some agency external to the text" (tei-c.org)
+        @param text Contents.
         @return A TEI text front / document title or title page / epigraph / citation / quote instance.
         """
+        # "character data" (tei-c.org)
         self.text = text
+        # "(language name) contains the name of a language mentioned in etymological or other linguistic discussion." (tei-c.org)
         self.lang = None
+        # "(paragraph) marks paragraphs in prose." (tei-c.org)
+        self.p = None
+
 class cit():
     """! TEI text front / document title or title page / epigraph / citation class.
     """
     def __init__(self, text=None):
         """! @brief Constructor.
-        TEI text front / document title or title page / epigraph / citation instance.
+        "(cited quotation) contains a quotation from some other document, together with a bibliographic reference to its source" (tei-c.org).
+        @param text Contents.
         @return A TEI text front / document title or title page / epigraph / citation instance.
         """
-        self.text = text
-        self.quote = None
+        # "(bibliographic citation) contains a loosely-structured bibliographic citation of which the sub-components may or may not be explicitly tagged." (tei-c.org)
         self.bibl = None
+        # "(quotation) contains a phrase or passage attributed by the narrator or author to some agency external to the text." (tei-c.org)
+        self.quote = None
+
+        ## Not TEI-compliant
+        self.text = text
+        self.p = None
+
 class epigraph():
     """! TEI text (front / document title) or (body / division) / epigraph class.
     """
     def __init__(self):
         """! @brief Constructor.
-        TEI text (front / document title) or (body / division) / epigraph instance.
+        "(epigraph) contains a quotation, anonymous or attributed, appearing at the start or end of a section or on a title page" (tei-c.org)
         @return A TEI text (front / document title) or (body / division) / epigraph instance.
         """
-        self.quote = None
-        self.cit = cit()
+        # "(bibliographic citation) contains a loosely-structured bibliographic citation of which the sub-components may or may not be explicitly tagged." (tei-c.org)
         self.bibl = None
+        # "(cited quotation) contains a quotation from some other document, together with a bibliographic reference to its source." (tei-c.org)
+        self.cit = cit()
+        # "(note) contains a note or annotation." (tei-c.org)
         self.note = ""
+        # "(quotation) contains a phrase or passage attributed by the narrator or author to some agency external to the text." (tei-c.org)
+        self.quote = None
 
     def __del__(self):
         """! @brief Destructor.
@@ -1082,16 +1159,19 @@ class epigraph():
         """
         del self.cit
 
-class doctitle():
+class docTitle():
     """! TEI text front / document title class.
     """
     def __init__(self):
         """! @brief Constructor.
-        TEI text front / document title instance.
+        "(document title) contains the title of a document, including all its constituents, as given on a title page" (tei-c.org).
         @return A TEI text front / document title instance.
         """
-        self.bibl = bibl()
+        # "(title part) contains a subsection or division of the title of a work, as indicated on a title page." (tei-c.org)
         self.titlePart = titlePart(type="principal")
+
+        ## Not TEI-compliant
+        self.bibl = bibl()
         self.dedicace = None
         self.epigraph = epigraph()
 
@@ -1100,6 +1180,7 @@ class doctitle():
         Release title part and epigraph instances.
         """
         del self.titlePart
+        del self.bibl
         del self.epigraph
 
 class titlePage():
@@ -1107,27 +1188,54 @@ class titlePage():
     """
     def __init__(self):
         """! @brief Constructor.
-        TEI text front / title page instance.
+        "(title page) contains the title page of a text, appearing within the front or back matter" (tei-c.org).
         @return A TEI text front / title page instance.
         """
+        # "(note) contains a note or annotation." (tei-c.org)
+        self.note = None
+        # "(byline) contains the primary statement of responsibility given for a work on its title page or at the head or end of the work." (tei-c.org)
+        self.byline = None
+        # "(document author) contains the name of the author of the document, as given on the title page (often but not always contained in a byline)." (tei-c.org)
+        self.docAuthor = None
+        # "(document date) contains the date of a document, as given on a title page or in a dateline." (tei-c.org)
+        self.docDate = None
+        # "(document edition) contains an edition statement as presented on a title page of a document." (tei-c.org)
+        self.docEdition = None
+        # "(document imprint) contains the imprint statement (place and date of publication, publisher name), as given (usually) at the foot of a title page." (tei-c.org)
+        self.docImprint = None
+        # "(document title) contains the title of a document, including all its constituents, as given on a title page." (tei-c.org)
+        self.docTitle = None
+        # "(epigraph) contains a quotation, anonymous or attributed, appearing at the start or end of a section or on a title page." (tei-c.org)
         self.epigraph = epigraph()
+        # "(title part) contains a subsection or division of the title of a work, as indicated on a title page." (tei-c.org)
+        self.titlePart = None
+
+        ## Not TEI-compliant
+        self.p = []
+        self.div = []
 
     def __del__(self):
         """! @brief Destructor.
         Release epigraph instance.
         """
         del self.epigraph
+        for p in self.p:
+            del p
 
 class prologue():
     """! TEI text front / prologue class.
     """
     def __init__(self, text=None):
         """! @brief Constructor.
-        TEI text front / prologue instance.
+        "(prologue) contains the prologue to a drama, typically spoken by an actor out of character, possibly in association with a particular performance or venue" (tei-c.org)
+        @param text Contents.
         @return A TEI text front / prologue instance.
         """
-        self.text = text
+        # "(paragraph) marks paragraphs in prose." (tei-c.org)
         self.p = []
+
+        ## Not TEI-compliant
+        self.text = text
 
     def __del__(self):
         """! @brief Destructor.
@@ -1141,33 +1249,39 @@ class front():
     """
     def __init__(self):
         """! @brief Constructor.
-        TEI text front instance.
+        "(front matter) contains any prefatory matter (headers, abstracts, title page, prefaces, dedications, etc.) found at the start of a document, before the main body" (tei-c.org)
         @return A TEI text front instance.
         """
-        self.doctitle = doctitle()
+        # "(document title) contains the title of a document, including all its constituents, as given on a title page." (tei-c.org)
+        self.docTitle = docTitle()
+        # "(title page) contains the title page of a text, appearing within the front or back matter." (tei-c.org)
         self.titlePage = titlePage()
-        self.div = []
+        # "(prologue) contains the prologue to a drama, typically spoken by an actor out of character, possibly in association with a particular performance or venue." (tei-c.org)
         self.prologue = prologue()
+        # "(text division) contains a subdivision of the front, body, or back of a text." (tei-c.org)
+        self.div = []
 
     def __del__(self):
         """! @brief Destructor.
         Release document title, title page, divisions and prologue instances.
         """
-        del self.doctitle
+        del self.docTitle
         del self.titlePage
+        del self.prologue
         for div in self.div:
             del div
-        del self.prologue
 
-# Handle BaTelÒc XML TEI text back: 'epilogue'
+## Handle BaTelÒc XML TEI text back: 'epilogue'
+
 class epilogue():
     """! TEI text back / epilogue class.
     """
     def __init__(self):
         """! @brief Constructor.
-        TEI text back / epilogue instance.
+        "(epilogue) contains the epilogue to a drama, typically spoken by an actor out of character, possibly in association with a particular performance or venue" (tei-c.org)
         @return A TEI text back / epilogue instance.
         """
+        ## Not TEI-compliant
         self.div = []
 
     def __del__(self):
@@ -1182,11 +1296,16 @@ class back():
     """
     def __init__(self):
         """! @brief Constructor.
-        TEI text back instance.
+        "(back matter) contains any appendixes, etc. following the main part of a text" (tei-c.org)
         @return A TEI text back instance.
         """
+        # "(epilogue) contains the epilogue to a drama, typically spoken by an actor out of character, possibly in association with a particular performance or venue." (tei-c.org)
         self.epilogue = epilogue()
+        # "(text division) contains a subdivision of the front, body, or back of a text." (tei-c.org)
         self.div = []
+
+        ## Not TEI-compliant
+        self.p = None # used only in BTO
 
     def __del__(self):
         """! @brief Destructor.
@@ -1196,7 +1315,8 @@ class back():
         for div in self.div:
             del div
 
-# For BaTelÒc
+## For BaTelÒc XML TEI text body
+
 class div4(div):
     """! TEI text body / division class.
     """
