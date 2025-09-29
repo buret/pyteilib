@@ -6,6 +6,10 @@
 
 __version__ = '1.0'
 
+import nltk
+nltk.download('punkt_tab')
+nltk.download('averaged_perceptron_tagger_eng')
+
 # Add pyteilib/pyteilib/ folder to path
 import sys
 sys.path.append('./pyteilib')
@@ -18,6 +22,7 @@ from tei.pcl_v9 import PCLv9
 ## Functions to read from a file: XML TEI, CSV
 from reader.xml_tei import xml_tei_read as tei_read
 from reader.csv import csv_read
+from reader.txt import txt_read
 
 ## Functions to transform files
 from transformer.generic import transform

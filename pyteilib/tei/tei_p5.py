@@ -598,7 +598,7 @@ class encodingDesc():
         """
         ## "May contain core: p / gaiji: charDecl / header: appInfo classDecl editorialDecl geoDecl listPrefixDef projectDesc refsDecl samplingDecl schemaRef styleDefDecl tagsDecl unitDecl / iso-fs: fsdDecl / linking: ab / spoken: transcriptionDesc / tagdocs: constraintDecl schemaSpec / textcrit: variantEncoding / verse: metDecl" (tei-c.org)
         # "(project description) describes in detail the aim or purpose for which an electronic file was encoded, together with any other relevant information concerning the process by which it was assembled or collected." (tei-c.org)
-        self.projectDesc = None
+        self.projectDesc = projectDesc()
         # "(sampling declaration) contains a prose description of the rationale and methods used in selecting texts, or parts of a text, for inclusion in the resource." (tei-c.org)
         #self.samplingDecl = None # not used
         # "(editorial practice declaration) provides details of editorial principles and practices applied during the encoding of a text." (tei-c.org)

@@ -7,13 +7,14 @@
 import pandas
 from tei.pcl_v8 import PCLv8
 from tei.pcl_v9 import PCLv9
-from tei.tei_p5 import term
+from tei.tei_p5 import note, p, term
 
 def csv_read(filename):
     """! @brief Read a CSV file.
     @param filename The name of the CSV file to read with full path, for instance 'user/input/metadata.csv'.
     @return A list of TEI instances.
     """
+    print("Read TEI header from CSV file " + filename)
     tei_instances = []
     dataframe = pandas.read_csv(filename, delimiter="\t", encoding="utf-8")
     dataframe = dataframe.fillna('')
@@ -85,11 +86,11 @@ def csv_read(filename):
         tei.teiHeader.fileDesc.publicationStmt.date = str(row["date"])
         if version == 'v9':
             tei.teiHeader.fileDesc.publicationStmt.idno.text = row["isbn"]
-        tei.teiHeader.fileDesc.publicationStmt.availability.licence = row["licence"]
-        tei.teiHeader.fileDesc.notesStmt.note = row["note"]
-        tei.teiHeader.fileDesc.editionStmt.edition = row["edition"]
-        tei.teiHeader.fileDesc.sourceDesc = row["sourceDesc"]
-        tei.teiHeader.encodingDesc.projectDesc = row["projectDesc"]
+        tei.teiHeader.fileDesc.publicationStmt.availability.licence.text = row["licence"]
+        tei.teiHeader.fileDesc.notesStmt.note.append(note(text=row["note"]))
+        tei.teiHeader.fileDesc.editionStmt.edition.text = row["edition"]
+        tei.teiHeader.fileDesc.sourceDesc.text = row["sourceDesc"]
+        tei.teiHeader.encodingDesc.projectDesc.p.append(p(text=row["projectDesc"]))
         tei.teiHeader.profileDesc.langUsage.language.ident = row["language"]
         tei.teiHeader.profileDesc.langUsage.language.langOri = row["language_ori"]
         if version == 'v8':
@@ -111,7 +112,7 @@ def csv_read(filename):
         if version == 'v9':
             for corpus in row["predefined_corpora"].split(';'):
                 tei.teiHeader.profileDesc.textClass.keywords.term.append(term(corpus.rstrip().lstrip()))
-            tei.teiHeader.revisionDesc.listChange.change.when = str(row["contributor-date1"])
-            tei.teiHeader.revisionDesc.listChange.change.who = row["contributor-name1"]
+            tei.teiHeader.revisionDesc.listChange.change[0].when = str(row["contributor-date1"])
+            tei.teiHeader.revisionDesc.listChange.change[0].who = row["contributor-name1"]
         tei_instances.append(tei)
     return tei_instances
