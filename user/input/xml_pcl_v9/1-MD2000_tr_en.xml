@@ -1,0 +1,167 @@
+<TEI id="43">
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title>The year 2000</title>
+				<subtitle></subtitle>
+				<author>
+					<name>
+						<forename>Ignacio</forename>
+						<surname>Ramonet</surname>
+                        <birth>1943</birth>
+                        <death>-</death>
+                        <placeName>Galice, Espagne</placeName>
+					</name>
+				</author>
+				<author>
+					<name>
+						<forename></forename>
+						<surname></surname>
+                        <birth></birth>
+                        <death></death>
+                        <placeName></placeName>
+					</name>
+				</author>
+				<author>
+					<name>
+						<forename></forename>
+						<surname></surname>
+                        <birth></birth>
+                        <death></death>
+                        <placeName></placeName>
+					</name>
+				</author>
+				<respStmt>
+					<resp>translator</resp>
+					<name>
+						<forename></forename>
+						<surname></surname>
+                        <birth></birth>
+                        <death></death>
+					</name>
+				</respStmt>
+				<respStmt>
+					<resp>translator</resp>
+					<name>
+						<forename></forename>
+						<surname></surname>
+                        <birth></birth>
+                        <death></death>
+					</name>
+				</respStmt>
+				<respStmt>
+					<resp>translator</resp>
+					<name>
+						<forename></forename>
+						<surname></surname>
+                        <birth></birth>
+                        <death></death>
+					</name>
+				</respStmt>
+				<respStmt>
+					<resp>transcriber</resp>
+					<name>
+						<forename>Hélène</forename>
+						<surname>Chuquet</surname>
+					</name>
+				</respStmt>
+                <respStmt>
+                    <resp>publisher_provider</resp>
+                    <name></name>
+                    <date></date>
+                </respStmt>
+                <respStmt>
+                    <resp>project_provider</resp>
+                    <name></name>
+                </respStmt>
+                <respStmt>
+                    <resp>teihdr_creator</resp>
+                    <name></name>
+                    <date></date>
+                </respStmt>
+                <respStmt>
+                    <resp>teibdy_creator</resp>
+                    <name></name>
+                    <date></date>
+                </respStmt>
+				<collectionStmt>
+					<collection>PLECI</collection>
+					<respStmt>
+                        <resp>resp_collection</resp>
+                        <name>
+                            <forename></forename>
+                            <surname></surname>
+                        </name>
+					</respStmt>
+                    <respStmt>
+                        <resp>resp_collection</resp>
+                        <name>
+                            <forename></forename>
+                            <surname></surname>
+                        </name>
+					</respStmt>
+                    <respStmt>
+                        <resp>resp_collection</resp>
+                        <name>
+                            <forename></forename>
+                            <surname></surname>
+                        </name>
+					</respStmt>
+				</collectionStmt>
+			</titleStmt>
+			<editionStmt>
+				<edition></edition>
+			</editionStmt>
+			<extent>
+				<measure unit="words" quantity="889"/>
+			</extent>
+			<publicationStmt>
+				<publisher>Le Monde Diplomatique</publisher>
+				<pubPlace></pubPlace>
+				<date>1999</date>
+                <idno type="ISBN"></idno>
+				<availability>
+					<licence></licence>
+				</availability>
+			</publicationStmt>
+			<notesStmt>
+				<note>Etats - Mondialisation</note>
+			</notesStmt>
+			<sourceDesc>
+				<p>Aligné par Hélène Chuquet</p>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<projectDesc>
+				<p>Corpus PLECI: lien site FoReLLIS</p>
+			</projectDesc>
+		</encodingDesc>
+		<profileDesc>
+			<langUsage>
+				<language ident="" variant="" script="" langOri="en" variantOri="" scriptOri=""/>
+			</langUsage>
+			<creation>
+				<date>2023</date>
+			</creation>
+			<textDesc>
+				<derivation type="traduction"/>
+				<domain type="journalistique"/>
+				<domain type=""/>
+				<domain type=""/>
+				<genre type="éditorial"/>
+				<genre type=""/>
+				<genre type=""/>
+				<textForm type=""/>
+			</textDesc>
+            <textClass>
+                <keywords>
+                    <term></term>
+                </keywords>
+            </textClass>
+		</profileDesc>
+        <revisionDesc>
+            <listChange>
+                <change who="" when="">File creation</change>
+            </listChange>
+        </revisionDesc>
+	</teiHeader>
