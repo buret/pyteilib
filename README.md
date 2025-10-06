@@ -1,4 +1,3 @@
-========
 pyteilib
 ========
 
@@ -76,14 +75,14 @@ Dependencies
 ___________________
 
 Indispensable third party libraries
-++++++++++++++++++++++++++++++++++++++
+______________________________________
 
 Here is the list of the libraries without which ``pyteilib`` won't work.
 
 Regex: http://pypi.python.org/pypi/regex
 
 Recommended third party libraries
-++++++++++++++++++++++++++++++++++++++++
+________________________________________
 
 Here is a list of the libraries without which ``pyteilib`` core functions will work, but which are anyway used quite frequently.
 
@@ -95,12 +94,12 @@ Setup for development version
 __________________________________
 
 Prerequisite
-+++++++++++++++
+_______________
 
 Install git.
 
 Setup with git
-++++++++++++++++++
+__________________
 
 If you want to regularly work on ``pyteilib``, open a (git) terminal and type in the following:
 ::
@@ -111,17 +110,19 @@ Instructions for a basic installation on Linux and Mac
 _______________________________________________________
 
 Prerequisites on Linux and Mac
-+++++++++++++++++++++++++++++++++++++++
+_______________________________________
 
 Before being able to run ``pyteilib``, you will need to follow these steps:
 
 1. git
+
 ::
 
 	$ sudo apt-get install git
 	$ git clone https://github.com/buret/pyteilib pyteilib
 
 2. setuptools
+
 ::
 
 	$ wget https://bootstrap.pypa.io/ez_setup.py -O - | sudo python
@@ -129,6 +130,7 @@ Before being able to run ``pyteilib``, you will need to follow these steps:
 3. python-docx
 
 Download ``python-docx-0.8.5.tar.gz`` : https://pypi.python.org/pypi/python-docx
+
 ::
 
 	$ tar xvzf python-docx-0.8.5.tar.gz
@@ -136,12 +138,13 @@ Download ``python-docx-0.8.5.tar.gz`` : https://pypi.python.org/pypi/python-docx
 	$ sudo python setup.py install
 
 4. xsltproc
+
 ::
 
 	$ sudo apt-get install xsltproc
 
 pylmflib installation on Linux and Mac
-+++++++++++++++++++++++++++++++++++++++++++++++++++++
+_____________________________________________________
 
 We recommend to use the stable version of ``pyteilib`` (1.0). Make sure that ``regex`` is installed on you system prior to installing ``pyteilib``. In order to install this version, simply download it from https://github.com/buret/pyteilib, unpack the directory, then ``cd`` into it, and type in the prompt:
 ::
@@ -238,7 +241,7 @@ _______________________
 This is an example workflow that illustrates some of the functionalities of ``pyteilib``.
 
 Getting started
-+++++++++++++++++++++++++++++
+_____________________________
 
 First, make sure to have the Python TEI library downloaded, extracted and installed properly. The dataset that will be used is located under ``test/``.
 
@@ -261,7 +264,7 @@ As a result, the following files will appear in the output directory:
 You can also directly run the conversion by running ``scenario1.sh``.
 
 Python scripts
-++++++++++++++++++++++++++++++
+______________________________
 
 * ``scenario1.py``
 
