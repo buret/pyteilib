@@ -99,11 +99,12 @@ def get_sub_elements(instance, element, xml_type='TEI', keep_highlighted=False):
                 get_sub_elements(instance, sub_element, xml_type, keep_highlighted)
                 continue
             elif sub_element.tag == "hi":
-                # 'hi' elements indicate rendering => ignore them
+                # 'hi' elements indicate rendering
                 if element.tag == "p":
                     if keep_highlighted:
                         instance.text = tostring(element, encoding='unicode', method='xml').strip().replace("<p>", '').replace("</p>", '')
                     else:
+                        # Ignore 'hi' elements
                         instance.text = tostring(element, encoding='unicode', method='text').strip()
                 continue
             elif sub_element.tag == "head" and element.tag.startswith("div"):

@@ -31,7 +31,6 @@ def build_sub_elements(object, element, xml_type='TEI'):
     @param element XML element for which sub-elements have to be created according to TEI object attributes.
     @param xml_type The type of the TEI object instance: 'BTO', 'PCLv8', 'PCLv9'.
     """
-    from xml.sax.saxutils import unescape
     # Parse instance attributes
     for item in object.__dict__.items():
         # Handle BaTelÒc XML
@@ -47,7 +46,7 @@ def build_sub_elements(object, element, xml_type='TEI'):
         attr_name = item[0]
         attr_value = item[1]
         if type(attr_value) is str:
-            attr_value = unescape(attr_value)
+            attr_value = attr_value
         # For each defined public attribute, create an XML sub-element
         if not attr_name.startswith('_'):
             if attr_value is not None:

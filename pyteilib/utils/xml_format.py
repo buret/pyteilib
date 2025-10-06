@@ -28,7 +28,10 @@ def write_result(element, filename, encoding=ENCODING):
     @param filename The name of the XML file to write with full path, for instance 'output.xml'.
     @param encoding Encoding mode. Default value is 'utf-8'.
     """
+    import html
     unicode_str = prettify(element, encoding=encoding)
+    # Handle Unicode characters 'less-than sign', 'greater-than sign', etc.
+    unicode_str = html.unescape(unicode_str.decode()).encode(encoding)
     output_file = open_write(filename, encoding=encoding)
     output_file.write(unicode_str)
     output_file.close()
