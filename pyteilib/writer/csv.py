@@ -11,6 +11,8 @@ def export_header(tei, filename):
     @param tei The TEI instance to export as CSV.
     @param filename The name of the CSV file to write with full path, for instance 'user/output/example_metadata.csv'.
     """
+    if tei.__class__.__name__ == "teiCorpus":
+        tei = tei.TEI
     print("Export ParCoLab " + tei.__class__.__name__[-2:] + " metadata to CSV file " + filename)
     if tei.__class__.__name__ == "PCLv8" or tei.__class__.__name__ == "PCLv9":
         csv_file = open(filename, 'a', newline='')
@@ -23,7 +25,9 @@ def export_header(tei, filename):
         if os.path.getsize(filename) == 0:
             writer.writeheader()
         ## Compute row values
-        file = os.path.basename(tei.get_filename())
+        file = ''
+        if tei.get_filename() is not None:
+            file = os.path.basename(tei.get_filename())
         id = tei.id
         title = tei.teiHeader.fileDesc.titleStmt.title
         subtitle = tei.teiHeader.fileDesc.titleStmt.subtitle
@@ -69,12 +73,15 @@ def export_header(tei, filename):
         resp_collection_firstname3 = None
         resp_collection_lastname3 = None
         try:
-            resp_collection_firstname1 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.forename
-            resp_collection_lastname1 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.surname
-            resp_collection_firstname2 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.forename
-            resp_collection_lastname2 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.surname
-            resp_collection_firstname3 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[2].name.forename
-            resp_collection_lastname3 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[2].name.surname
+            if tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name is not None:
+                resp_collection_firstname1 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.forename
+                resp_collection_lastname1 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.surname
+            if tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name is not None:
+                resp_collection_firstname2 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.forename
+                resp_collection_lastname2 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.surname
+            if tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[2].name is not None:
+                resp_collection_firstname3 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[2].name.forename
+                resp_collection_lastname3 = tei.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[2].name.surname
         except IndexError:
             pass
         words = tei.teiHeader.fileDesc.extent.measure.quantity
@@ -185,7 +192,8 @@ def export_header(tei, filename):
             script_ori = tei.teiHeader.profileDesc.langUsage.language.scriptOri
             predefined_corpora = ''
             for corpus in tei.teiHeader.profileDesc.textClass.keywords.term:
-                predefined_corpora += corpus.text + ' ; '
+                if corpus.text is not None and corpus.text != '':
+                    predefined_corpora += corpus.text + ' ; '
             predefined_corpora = predefined_corpora.rstrip(' ; ')
             contributor_date1 = None
             contributor_name1 = None

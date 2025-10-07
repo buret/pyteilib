@@ -3,7 +3,7 @@
 
 import sys
 
-# Find pyteilib/examples/ path location
+# Find pyteilib/user/ path location
 ftest_path = sys.path[0] + '/'
 
 # Add pyteilib/ folder to path

@@ -1,9 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 ## Needed to import TEI library properly
-# Also automatically define 'ftest_path' as location of pyteilib/examples/ folder
+# Also automatically define 'ftest_path' as location of pyteilib/user/ folder
 from startup import *
 import os
 from pathlib import Path

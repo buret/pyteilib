@@ -8,55 +8,55 @@
 					<name>
 						<forename>Janette </forename>
 						<surname>Habel</surname>
+					</name>
                         <birth>1938</birth>
                         <death>-</death>
                         <placeName>Paris</placeName>
-					</name>
 				</author>
 				<author>
 					<name>
 						<forename></forename>
 						<surname></surname>
+					</name>
                         <birth></birth>
                         <death></death>
                         <placeName></placeName>
-					</name>
 				</author>
 				<author>
 					<name>
 						<forename></forename>
 						<surname></surname>
+					</name>
                         <birth></birth>
                         <death></death>
                         <placeName></placeName>
-					</name>
 				</author>
 				<respStmt>
 					<resp>translator</resp>
 					<name>
 						<forename></forename>
 						<surname></surname>
+					</name>
                         <birth></birth>
                         <death></death>
-					</name>
 				</respStmt>
 				<respStmt>
 					<resp>translator</resp>
 					<name>
 						<forename></forename>
 						<surname></surname>
+					</name>
                         <birth></birth>
                         <death></death>
-					</name>
 				</respStmt>
 				<respStmt>
 					<resp>translator</resp>
 					<name>
 						<forename></forename>
 						<surname></surname>
+					</name>
                         <birth></birth>
                         <death></death>
-					</name>
 				</respStmt>
 				<respStmt>
 					<resp>transcriber</resp>
@@ -165,3 +165,4 @@
             </listChange>
         </revisionDesc>
 	</teiHeader>
+</TEI>

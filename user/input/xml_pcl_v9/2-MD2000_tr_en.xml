@@ -8,55 +8,55 @@
 					<name>
 						<forename>Derry </forename>
 						<surname>Cook-Radmore</surname>
+					</name>
                         <birth>1929</birth>
                         <death>2010</death>
                         <placeName>Pays-Bas</placeName>
-					</name>
 				</author>
 				<author>
 					<name>
 						<forename></forename>
 						<surname></surname>
+					</name>
                         <birth></birth>
                         <death></death>
                         <placeName></placeName>
-					</name>
 				</author>
 				<author>
 					<name>
 						<forename></forename>
 						<surname></surname>
+					</name>
                         <birth></birth>
                         <death></death>
                         <placeName></placeName>
-					</name>
 				</author>
 				<respStmt>
 					<resp>translator</resp>
 					<name>
 						<forename></forename>
 						<surname></surname>
+					</name>
                         <birth></birth>
                         <death></death>
-					</name>
 				</respStmt>
 				<respStmt>
 					<resp>translator</resp>
 					<name>
 						<forename></forename>
 						<surname></surname>
+					</name>
                         <birth></birth>
                         <death></death>
-					</name>
 				</respStmt>
 				<respStmt>
 					<resp>translator</resp>
 					<name>
 						<forename></forename>
 						<surname></surname>
+					</name>
                         <birth></birth>
                         <death></death>
-					</name>
 				</respStmt>
 				<respStmt>
 					<resp>transcriber</resp>
@@ -165,3 +165,4 @@
             </listChange>
         </revisionDesc>
 	</teiHeader>
+</TEI>

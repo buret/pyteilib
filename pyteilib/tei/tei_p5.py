@@ -80,10 +80,11 @@ class collectionStmt():
         self.collection = None
         self.respStmt = []
     def __del__(self):
-        for respStmt in self.respStmt:
-            #if respStmt.name is not None:
-                #del respStmt.name
-            del respStmt
+        if self.respStmt is not None:
+            for respStmt in self.respStmt:
+                #if respStmt.name is not None:
+                    #del respStmt.name
+                del respStmt
 
 class titleStmt():
     """! TEI header file description / title statement class.
@@ -117,10 +118,12 @@ class titleStmt():
         """! @brief Destructor.
         Release auhtors and responsible statements instances.
         """
-        for author in self.author:
-            del author
-        for respStmt in self.respStmt:
-            del respStmt
+        if self.author is not None:
+            for author in self.author:
+                del author
+        if self.respStmt is not None:
+            for respStmt in self.respStmt:
+                del respStmt
 
 class edition():
     """! TEI header file description / edition statement / edition class.
@@ -332,8 +335,9 @@ class notesStmt():
         """! @brief Destructor.
         Release notes instance.
         """
-        for note in self.note:
-            del note
+        if self.note is not None:
+            for note in self.note:
+                del note
 
 class title():
     """! TEI (header file description / source description / bibliography structure / monography) or (text body division / epigraph / citation / bibliography) / title class.
@@ -377,8 +381,9 @@ class imprint():
         """! @brief Destructor.
         Release idnos instance.
         """
-        for idno in self.idno:
-            del idno
+        if self.idno is not None:
+            for idno in self.idno:
+                del idno
 
 class monogr():
     """! TEI header file description / source description / bibliography structure / monography class.
@@ -400,11 +405,13 @@ class monogr():
         """! @brief Destructor.
         Release authors, imprint and titles instances.
         """
-        for author in self.author:
-            del author
+        if self.author is not None:
+            for author in self.author:
+                del author
         del self.imprint
-        for title in self.title:
-            del title
+        if self.title is not None:
+            for title in self.title:
+                del title
 
 class biblStruct():
     """! TEI header file description / source description / bibliography structure class.
@@ -545,8 +552,9 @@ class category():
         """! @brief Destructor.
         Release category descriptions instance.
         """
-        for catDesc in self.catDesc:
-            del catDesc
+        if self.catDesc is not None:
+            for catDesc in self.catDesc:
+                del catDesc
 
 class taxonomy():
     """! TEI header encoding description / class declaration / taxonomy class.
@@ -567,8 +575,9 @@ class taxonomy():
         """! @brief Destructor.
         Release catagories instance.
         """
-        for category in self.category:
-            del category
+        if self.category is not None:
+            for category in self.category:
+                del category
 
 class classDecl():
     """! TEI header encoding description / class declaration class.
@@ -710,8 +719,9 @@ class keywords():
         """! @brief Destructor.
         Release terms instance.
         """
-        for term in self.term:
-            del term
+        if self.term is not None:
+            for term in self.term:
+                del term
 
 class textClass():
     """! TEI header profile description / text class class.
@@ -793,10 +803,12 @@ class textDesc():
         Release derivation, domains, genres and text form instances.
         """
         del self.derivation
-        for domain in self.domain:
-            del domain
-        for genre in self.genre:
-            del genre
+        if self.domain is not None:
+            for domain in self.domain:
+                del domain
+        if self.genre is not None:
+            for genre in self.genre:
+                del genre
         del self.textForm
 
 class profileDesc():
@@ -882,8 +894,9 @@ class listChange():
         """! @brief Destructor.
         Release changes instances.
         """
-        for change in self.change:
-            del change
+        if self.change is not None:
+            for change in self.change:
+                del change
 
 class revisionDesc():
     """! TEI header revision description class.
@@ -1060,10 +1073,12 @@ class div():
         """! @brief Destructor.
         Release paragraphs and divisions instances.
         """
-        for p in self.p:
-            del p
-        for div in self.div:
-            del div
+        if self.p is not None:
+            for p in self.p:
+                del p
+        if self.div is not None:
+            for div in self.div:
+                del div
         del self.closer
 
 ## Handle BaTelÒc XML TEI text front: 'docTitle', 'bibl', 'docAuthor', 'titlePart', 'dedicace', 'epigraph', 'quote', 'cit', 'note', 'titlePage', 'prologue'
@@ -1219,8 +1234,9 @@ class titlePage():
         Release epigraph instance.
         """
         del self.epigraph
-        for p in self.p:
-            del p
+        if self.p is not None:
+            for p in self.p:
+                del p
 
 class prologue():
     """! TEI text front / prologue class.
@@ -1241,8 +1257,9 @@ class prologue():
         """! @brief Destructor.
         Release paragraphs instance.
         """
-        for p in self.p:
-            del p
+        if self.p is not None:
+            for p in self.p:
+                del p
 
 class front():
     """! TEI text front class.
@@ -1268,8 +1285,9 @@ class front():
         del self.docTitle
         del self.titlePage
         del self.prologue
-        for div in self.div:
-            del div
+        if self.div is not None:
+            for div in self.div:
+                del div
 
 ## Handle BaTelÒc XML TEI text back: 'epilogue'
 
@@ -1288,8 +1306,9 @@ class epilogue():
         """! @brief Destructor.
         Release divisions instance.
         """
-        for div in self.div:
-            del div
+        if self.div is not None:
+            for div in self.div:
+                del div
 
 class back():
     """! TEI text back class.
@@ -1312,8 +1331,9 @@ class back():
         Release epilogue and divisions instances.
         """
         del self.epilogue
-        for div in self.div:
-            del div
+        if self.div is not None:
+            for div in self.div:
+                del div
 
 ## For BaTelÒc XML TEI text body
 
@@ -1392,8 +1412,9 @@ class body():
         """! @brief Destructor.
         Release divisions instance.
         """
-        for div in self.div:
-            del div
+        if self.div is not None:
+            for div in self.div:
+                del div
 
     def add_text(self, some_text, new_line=False):
         """! @brief Add some text to text body.
@@ -1497,6 +1518,7 @@ class teiCorpus():
         @return None.
         """
         self.__filename = filename
+        self.TEI.set_filename(filename)
 
     def get_filename(self):
         """! @brief Get filename.

@@ -44,26 +44,31 @@ class PCLv9(TEI):
         """
         del self.teiHeader.revisionDesc
         del self.teiHeader.profileDesc.textClass
-        for genre in self.teiHeader.profileDesc.textDesc.genre:
-            del genre
-        for domain in self.teiHeader.profileDesc.textDesc.domain:
-            del domain
+        if self.teiHeader.profileDesc.textDesc.genre is not None:
+            for genre in self.teiHeader.profileDesc.textDesc.genre:
+                del genre
+        if self.teiHeader.profileDesc.textDesc.domain is not None:
+            for domain in self.teiHeader.profileDesc.textDesc.domain:
+                del domain
         del self.teiHeader.profileDesc.textDesc
         del self.teiHeader.fileDesc.notesStmt
         del self.teiHeader.fileDesc.publicationStmt.availability.licence
         del self.teiHeader.fileDesc.publicationStmt.idno
         del self.teiHeader.fileDesc.extent
-        for respStmt in self.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt:
-            if respStmt.name is not None:
-                del respStmt.name
-            del respStmt
+        if self.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt is not None:
+            for respStmt in self.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt:
+                if respStmt.name is not None:
+                    del respStmt.name
+                del respStmt
         del self.teiHeader.fileDesc.titleStmt.collectionStmt
-        for respStmt in  self.teiHeader.fileDesc.titleStmt.respStmt:
-            if respStmt.name is not None:
-                del respStmt.name
-            del respStmt
-        for author in self.teiHeader.fileDesc.titleStmt.author:
-            if author.name is not None:
-                del author.name
-            del author
+        if self.teiHeader.fileDesc.titleStmt.respStmt is not None:
+            for respStmt in self.teiHeader.fileDesc.titleStmt.respStmt:
+                if respStmt.name is not None:
+                    del respStmt.name
+                del respStmt
+        if self.teiHeader.fileDesc.titleStmt.author is not None:
+            for author in self.teiHeader.fileDesc.titleStmt.author:
+                if author.name is not None:
+                    del author.name
+                del author
         TEI.__del__(self)

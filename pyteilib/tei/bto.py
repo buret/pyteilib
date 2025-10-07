@@ -43,23 +43,30 @@ class BTO(TEI):
         """
         del self.text.back
         del self.text.front
-        for category in self.teiHeader.encodingDesc.classDecl.taxonomy.category:
-            for catDesc in category.catDesc:
-                del catDesc
-            del category
+        if self.teiHeader.encodingDesc.classDecl.taxonomy.category is not None:
+            for category in self.teiHeader.encodingDesc.classDecl.taxonomy.category:
+                if category.catDesc is not None:
+                    for catDesc in category.catDesc:
+                        del catDesc
+                del category
         del self.teiHeader.encodingDesc.classDecl
-        for idno in self.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.idno:
-            del idno
-        for title in self.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.title:
-            del title
-        for author in self.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.author:
-            del author
+        if self.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.idno is not None:
+            for idno in self.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.idno:
+                del idno
+        if self.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.title is not None:
+            for title in self.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.title:
+                del title
+        if self.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.author is not None:
+            for author in self.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.author:
+                del author
         del self.teiHeader.fileDesc.sourceDesc.biblStruct
         del self.teiHeader.fileDesc.seriesStmt
         del self.teiHeader.fileDesc.publicationStmt.distributor
         del self.teiHeader.fileDesc.editionStmt.edition
-        for respStmt in  self.teiHeader.fileDesc.titleStmt.respStmt:
-            del respStmt
-        for author in self.teiHeader.fileDesc.titleStmt.author:
-            del author
+        if self.teiHeader.fileDesc.titleStmt.respStmt is not None:
+            for respStmt in self.teiHeader.fileDesc.titleStmt.respStmt:
+                del respStmt
+        if self.teiHeader.fileDesc.titleStmt.author is not None:
+            for author in self.teiHeader.fileDesc.titleStmt.author:
+                del author
         TEI.__del__(self)

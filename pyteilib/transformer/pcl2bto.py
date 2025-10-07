@@ -28,6 +28,21 @@ genre_mapping = {
     None : None
 }
 
+def concatenate_name(name1, name2, separator=' '):
+    """! @brief Concatenate name1 and name2.
+    @param name1 A string containing a name, might be None.
+    @param name2 A string containing a name, might be None.
+    @param separator A character to insert between both names, default is space.
+    @return A string containing the full name 'name1 name2', might be None.
+    """
+    name = name1
+    if name2 is not None and name2 != '':
+        if name is None or name == '':
+            name = name2
+        else:
+            name = name + separator + name2
+    return name
+
 def transform_pcl2bto(tei_pcl, xml_type='TEI'):
     """! @brief Transform a TEI instance type to another.
     @param tei_pcl The TEI ParCoLab instance to transform.
@@ -39,6 +54,8 @@ def transform_pcl2bto(tei_pcl, xml_type='TEI'):
     else:
         print("Transform ParCoLab " + xml_type[-2:] + " format to BaTelÒc format")
     tei_bto = BTO()
+    if tei_pcl.__class__.__name__ == "teiCorpus":
+        tei_pcl = tei_pcl.TEI
     tei_bto.id = tei_pcl.id
 
     #### TEI header
@@ -54,7 +71,7 @@ def transform_pcl2bto(tei_pcl, xml_type='TEI'):
     tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.title[1].text = tei_pcl.teiHeader.fileDesc.titleStmt.subtitle
     # Set author in 2 different places
     if len(tei_pcl.teiHeader.fileDesc.titleStmt.author) > 0:
-        tei_bto.teiHeader.fileDesc.titleStmt.author = tei_pcl.teiHeader.fileDesc.titleStmt.author[0].name.surname + ' ' + tei_pcl.teiHeader.fileDesc.titleStmt.author[0].name.forename
+        tei_bto.teiHeader.fileDesc.titleStmt.author = concatenate_name(tei_pcl.teiHeader.fileDesc.titleStmt.author[0].name.surname, tei_pcl.teiHeader.fileDesc.titleStmt.author[0].name.forename)
     tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.author[1].surname = tei_pcl.teiHeader.fileDesc.titleStmt.author[0].name.surname
     tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.author[1].forename = tei_pcl.teiHeader.fileDesc.titleStmt.author[0].name.forename
     if xml_type == 'PCLv9':
@@ -62,8 +79,8 @@ def transform_pcl2bto(tei_pcl, xml_type='TEI'):
         tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.author[0].datedead = tei_pcl.teiHeader.fileDesc.titleStmt.author[0].death
     # Leave editor empty
     # Compute principal
-    if len(tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt) > 0:
-        tei_bto.teiHeader.fileDesc.titleStmt.principal = tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.forename + ' ' + tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.surname
+    if len(tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt) > 0 and tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name is not None:
+        tei_bto.teiHeader.fileDesc.titleStmt.principal = concatenate_name(tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.forename, tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[0].name.surname)
     # Set 5 respStmt
     set_translator = True
     for item in tei_pcl.teiHeader.fileDesc.titleStmt.respStmt:
@@ -90,8 +107,8 @@ def transform_pcl2bto(tei_pcl, xml_type='TEI'):
     ## editionStmt
     if xml_type == 'PCLv9':
         # Set edition date as last change
-        if len(tei_pcl.revisionDesc.listcChange.change) > 0:
-            tei_bto.teiHeader.fileDesc.editionStmt.edition.date = tei_pcl.teiHeader.revisionDesc.listcChange.change[0].when
+        if len(tei_pcl.teiHeader.revisionDesc.listChange.change) > 0:
+            tei_bto.teiHeader.fileDesc.editionStmt.edition.date = tei_pcl.teiHeader.revisionDesc.listChange.change[0].when
 
     ## extent
     if tei_pcl.teiHeader.fileDesc.extent is not None:
@@ -101,7 +118,7 @@ def transform_pcl2bto(tei_pcl, xml_type='TEI'):
 
     # Compute distributor's name
     if len(tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt) > 1:
-        tei_bto.teiHeader.fileDesc.publicationStmt.distributor.name = tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.surname + '-' + tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.forename
+        tei_bto.teiHeader.fileDesc.publicationStmt.distributor.name = concatenate_name(tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.surname, tei_pcl.teiHeader.fileDesc.titleStmt.collectionStmt.respStmt[1].name.forename, separator='-')
     # Set availability
     tei_bto.teiHeader.fileDesc.publicationStmt.availability.status = tei_pcl.teiHeader.fileDesc.publicationStmt.availability.licence.text
     tei_bto.teiHeader.fileDesc.publicationStmt.availability.p = tei_pcl.teiHeader.fileDesc.publicationStmt.availability.licence.p
@@ -114,17 +131,18 @@ def transform_pcl2bto(tei_pcl, xml_type='TEI'):
     tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.date = tei_pcl.teiHeader.fileDesc.publicationStmt.date
     tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.publisher = tei_pcl.teiHeader.fileDesc.publicationStmt.publisher
     # Split edition into series and idno
-    edition_list = tei_pcl.teiHeader.fileDesc.editionStmt.edition.text.split()
-    if len(edition_list) > 1:
-        tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.series = edition_list[0]
-        tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.idno[1].text = edition_list[1]
-    elif len(edition_list) == 1:
-        try:
-            # If this a an integer, set idno
-            tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.idno[1].text = int(edition_list[0])
-        except ValueError:
-            # If this is a string, set series statement
-            tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.seriesStmt = edition_list[0]
+    if tei_pcl.teiHeader.fileDesc.editionStmt.edition.text is not None:
+        edition_list = tei_pcl.teiHeader.fileDesc.editionStmt.edition.text.split()
+        if len(edition_list) > 1:
+            tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.series = edition_list[0]
+            tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.idno[1].text = edition_list[1]
+        elif len(edition_list) == 1:
+            try:
+                # If this a an integer, set idno
+                tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.idno[1].text = int(edition_list[0])
+            except ValueError:
+                # If this is a string, set series statement
+                tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.seriesStmt = edition_list[0]
     tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.pubplace = tei_pcl.teiHeader.fileDesc.publicationStmt.pubPlace
     tei_bto.teiHeader.fileDesc.sourceDesc.biblStruct.monogr.imprint.idno[0].text = tei_pcl.teiHeader.fileDesc.publicationStmt.idno
 
