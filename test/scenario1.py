@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ## Needed to import TEI library properly
-# Also automatically define 'ftest_path' as location of pyteilib/examples/ folder
+# Also automatically define 'ftest_path' as location of pyteilib/test/ folder
 from startup import *
 import os
 from datetime import datetime

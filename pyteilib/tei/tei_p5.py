@@ -9,12 +9,14 @@
 class name():
     """! TEI header name class.
     """
-    def __init__(self):
+    def __init__(self, text=None):
         """! @brief Constructor.
         "(name, proper noun) contains a proper noun or noun phrase" (tei-c.org).
+        @param text Contents.
         @return A TEI header name instance.
         """
         ## "May contain analysis: c cl interp interpGrp m pc phr s span spanGrp w / certainty: certainty precision respons / core: abbr add address binaryObject cb choice cit corr date del distinct ellipsis email emph expan foreign gap gb gloss graphic hi index lb measure measureGrp media mentioned milestone name note noteGrp num orig pb ptr q quote ref reg rs ruby said sic soCalled term time title unclear unit / dictionaries: lang oRef pRef / figures: figure formula notatedMusic / gaiji: g / header: idno / iso-fs: fLib fs fvLib / linking: alt altGrp anchor join joinGrp link linkGrp seg timeline / msdescription: catchwords depth dim dimensions height heraldry locus locusGrp material objectType origDate origPlace secFol signatures stamp watermark width / namesdates: addName affiliation bloc climate country district eventName forename genName geo geogFeat geogName location nameLink objectName offset orgName persName persPronouns placeName population region roleName settlement state surname terrain trait / spoken: incident kinesic pause shift vocal writing / tagdocs: att code gi ident listRef specDesc specList tag val / textcrit: app witDetail / textstructure: floatingText / transcr: addSpan am damage damageSpan delSpan ex fw handShift listTranspose metamark mod redo restore retrace secl space subst substJoin supplied surplus undo / verse: caesura rhyme / character data" (tei-c.org)
+        self.text = text # used only in PCLv9 fileDesc / titleStmt / respStmt
         # "(forename) contains a forename, given or baptismal name. May contain character data" (tei-c.org)
         self.forename = None
         # "(surname) contains a family (inherited) name, as opposed to a given, baptismal, or nick name. May contain character data" (tei-c.org)
